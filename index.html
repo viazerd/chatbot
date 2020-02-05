@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Payment Advice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid pl-0 pr-0">
+    <div class="chat">
+      <div class="detail">
+        <img src="login.png" alt=""> <span>Hi there...</span> <button class="close"></button><button class="open"
+          style="display: none;"><img src="up-arrow.png"></button>
+      </div>
+      <div class="status"><span class="dot-green"></span> We're online, chat with us.</div>
+      <div class="message">
+        <div class="conversation" id='convo'>
+          <div class="left">
+            Welcome to xxx, talk to our chatbot to grand easy access / faster responese
+            <!-- Hi there, welcome to our side. How can we help you? -->
+          </div>
+          <div class="right">I'm looking for staff solutions</div>
+          <div class="clearfix"></div>
+          <div class="left">Which kind of service you looking for?</div>
+          <div class="clearfix"></div>
+
+        </div>
+        <input type="text" id="msg_input" placeholder="Enter your message..."><button class="send"><img src="plane.png"
+            alt=""></button>
+        <div class="files"><button></button>
+          <span>Powered by Experdel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script id='main_selection' type="text/template">
+  <div id='main_menu'>
+    <!-- <button id='bonus'>Bonus</button>
+    <div class="clearfix"></div> -->
+    <button id='deposit'>Deposit</button>
+    <div class="clearfix"></div>
+    <button id='deposit'>Game List</button>
+    <div class="clearfix"></div>
+    <button id='promotion'>Promotion</button>
+    <div class="clearfix"></div>
+    <button id='withdrawal'>Withdrawal</button>
+    <div class="clearfix"></div>
+    <button id='balance'>Balance Enquiry</button>
+    <div class="clearfix"></div>
+    <button id='troubleshooting'>Report Issue</button>
+    <div class="clearfix"></div>
+   </div>
+  </script>
+
+<script id='bonus_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Bonus</div>
+    <div class="clearfix"></div>
+  </script>
+<script id='deposit_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Deposit</div>
+    <div class="clearfix"></div>
+  </script>
+<script id='balance_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Balance Enquiry</div>
+    <div class="clearfix"></div>
+  </script>
+<script id='withdraw_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Withdrawal</div>
+    <div class="clearfix"></div>
+  </script>
+<script id='promotion_selection' type="text/template">
+  <div class="clearfix"></div>
+      <div class="right">Promotion</div>
+      <div class="clearfix"></div>
+  </script>
+
+<script id='troubleshooting_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Report Issue</div>
+    <div class="clearfix"></div>
+  </script>
+
+<script id='claim_promotion_selection' type="text/template">
+  <div class="clearfix"></div>
+        <div class="right">Claim Promotion/Bonus</div>
+        <div class="clearfix"></div>
+    </script>
+
+<script id='bonus_available_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Bonus Available</div>
+    <div class="clearfix"></div>
+ </script>
+
+<script id='check_balance_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Check Balancee</div>
+    <div class="clearfix"></div>
+ </script>
+
+<script id='transfer_balance_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Transfer Balance</div>
+    <div class="clearfix"></div>
+ </script>
+
+
+<script id='promotion_sub_sec' type="text/template">
+  <div id="promo_sub_sec">
+    <button  id='promotion_type'>Promotion Type</button>
+    <div class="clearfix"></div>
+    <button id='claim_promo'>Claim Promotion/Bonus</button>
+    <div class="clearfix"></div>
+    <button id='bonus_available'>Bonus Available</button>
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <button id='back_menu'>Previous Menu</button>
+    <div class="clearfix"></div>
+  </div>
+</script>
+
+<script id="balance_sub_sec" type="text/template">
+  <div id="bal_sub_sec">
+    <button autofocus id='check_balance'>Check Balance</button>
+    <div class="clearfix"></div>
+    <button id='transfer_balance'>Transfer Balance</button>
+    <div class="clearfix"></div>
+    <button id='bal_back_menu'>Previous Menu</button>
+    <div class="clearfix"></div>
+  </div>
+</script>
+
+<script id="claim_promo_template" type='text/template'>
+  <form id='claim_promo_form' class="form">
+    <div class="form-group">
+      <input autofocus type="text" name="" id="promo_game_name" class="form-control" placeholder="Enter Game Name">
+    </div>
+    <div class="form-group">
+      <input type="text" name="" id="promo_game_id" class="form-control" placeholder="Enter Game ID">
+    </div>
+    <div class="form-group">
+      <input type="text" name="" id="promo_user_mobile" class="form-control" placeholder="Enter Mobile No">
+    </div>
+    <br>
+    <div class="form-group">
+      <button  class="btn btn-primary claim_promo_submit" type="button">Submit</button>
+      <button  class="btn btn-primary claim_promo_cancel" style="float:right" type="button">Cancel</button>
+    </div>
+    
+
+  </form>
+</script>
+
+<script id="bonus_available_template" type="text/template">
+  <form id='bonus_available_form' class="form">
+    <div class="form-group">
+      <input autofocus type="text" name="" id="bonus_available_game_name" class="form-control" placeholder="Enter Game Name">
+    </div>
+    <div class="form-group">
+      <input type="text" name="" id="bonus_available_user_mobile" class="form-control" placeholder="Enter Mobile No">
+    </div>
+    <br>
+    <div class="form-group">
+      <button  class="btn btn-primary bonus_available_submit" type="button">Submit</button>
+      <button  class="btn btn-primary bonus_available_cancel" style="float:right" type="button">Cancel</button>
+    </div>
+    
+
+  </form>
+
+
+</script>
+
+<script id="bonus_form_template" type="text/template">
+  <form id='bonus_form' class="form">
+      <div class="form-group">
+        <input autofocus type="text" name="" autofocus id="bonus_user_name" class="form-control" placeholder="Enter Your Name">
+      </div>
+      <div class="form-group">
+        <input type="text" name="" id="bonus_user_email" class="form-control" placeholder="Enter Email Address">
+      </div>
+      <div class="form-group">
+        <input type="text" name="" id="bonus_user_id" class="form-control" placeholder="Enter Player ID">
+      </div>
+      <div class="form-group">
+        <input type="text" name="" id="bonus_user_mobile" class="form-control" placeholder="Enter Mobile No">
+      </div>
+      <div class="form-group">
+        <label for="bonus_reason">What is you issue?</label>
+        <select name="bonus_reason" id="bonus_reason" class="form-control">
+          <option value="Which bonus I am eligible for?">Which bonus I am eligible for? </option>
+          <option value="I have not received my bonus">I have not received my bonus </option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group">
+        <button  class="btn btn-primary bonus_submit" type="button">Submit</button>
+        <button id='cncl'  class="btn btn-primary bonus_cancel" style="float:right" type="button">Cancel</button>
+      </div>
+      
+  
+    </form>
+  </script>
+
+
+<script id="deposit_form_template" type="text/template">
+  <form id='deposit_form' class="form" enctype="multipart/form-data">
+        <div class="form-group">
+          <input autofocus type="text" name="playername" id="deposit_user_name" class="form-control" placeholder="Enter Your Name">
+        </div>
+        <div class="form-group">
+          <input hidden type="text" name="subject" id="subject" class="form-control" value='Deposit'>
+        </div>
+        <div class="form-group">
+          <input hidden type="text" name="description" id="description" class="form-control" value='No Description'>
+        </div>
+        <div class="form-group">
+          <input type="text" name="gamename" id="deposit_game_name" class="form-control" placeholder="Enter Game Name">
+        </div>
+        <div class="form-group">
+          <input type="text" name="usercontact" id="deposit_user_mobile" class="form-control" placeholder="Enter Mobile No">
+        </div>
+        <div class="form-group">
+          <label for="upload_deposit">Upload Photo: </label>
+           <input id='upload_deposit' type="file" name="image">
+        </div>
+        <br>
+  
+        
+        <div class="form-group">
+          <button  class="btn btn-primary deposit_submit"  value="submit" type='button' >Submit</button>
+          <button  class="btn btn-primary deposit_cancel" style="float:right" type="button">Cancel</button>
+        </div>
+        
+    
+      </form>
+    </script>
+
+
+<script id="withdraw_form_template" type="text/template">
+  <form id='withdraw_form' class="form">
+        <div class="form-group">
+          <input autofocus  type="text" name="" id="withdraw_user_name" class="form-control" placeholder="Enter Your Name">
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="withdraw_user_id" class="form-control" placeholder="Enter Game ID">
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="withdraw_user_mobile" class="form-control" placeholder="Enter Mobile No">
+        </div>
+        <br>
+        <div class="form-group">
+          <button  class="btn btn-primary withdraw_submit" type="button">Submit</button>
+          <button  class="btn btn-primary withdraw_cancel" style="float:right" type="button">Cancel</button>
+        </div>
+        
+    
+      </form>
+    </script>
+
+<script id="issue_form_template" type="text/template">
+  <form id='issue_form' class="form">
+      <div class="form-group">
+        <input autofocus type="text" name="playername" id="issue_user_name" class="form-control" placeholder="Enter Your Name">
+      </div>
+      <div class="form-group">
+        <input type="text" name="subject" hidden id="subject" class="form-control" value='Report Issue'>
+      </div>
+      <div class="form-group">
+        <input type="text" name="gamename" id="issue_game_name" class="form-control" placeholder="Enter Game Name">
+      </div>
+      <div class="form-group">
+        <input type="text" name="userid" id="issue_game_id" class="form-control" placeholder="Enter Game ID">
+      </div>
+      <div class="form-group">
+        <input type="text" name="usercontact" id="issue_user_mobile" class="form-control" placeholder="Enter Mobile No">
+      </div>
+      <div class="form-group">
+        <label for="upload_issue">Upload Photo: </label>
+         <input id='upload_issue' type="file" name="image">
+      </div>
+      <br>
+
+      <div class="form-group">
+        <textarea name="description" id="issue_description" class="form-control" cols="30" rows="5" placeholder="Description"></textarea>
+      </div>
+     
+      <br>
+      
+      <div class="form-group">
+        <button  class="btn btn-primary issue_submit" type="button">Submit</button>
+        <button  class="btn btn-primary issue_cancel" style="float:right" type="button">Cancel</button>
+      </div>
+      
+  
+    </form>
+  </script>
+
+<script id="check_bal_template" type="text/template">
+  <form id='check_bal_form' class="form">
+      <div class="form-group">
+        <input autofocus type="text" name="" id="check_bal_gameid" class="form-control" placeholder="Enter Game ID">
+      </div>
+      <div class="form-group">
+        <input type="text" name="" id="check_bal_mobile" class="form-control" placeholder="Enter Mobile No">
+      </div>
+     
+      <br>
+           
+      <div class="form-group">
+        <button  class="btn btn-primary check_bal_submit" type="button">Submit</button>
+        <button  class="btn btn-primary check_bal_cancel" style="float:right" type="button">Cancel</button>
+      </div>
+      
+  
+    </form>
+  </script>
+<script id="transfer_bal_template" type="text/template">
+  <form id='transfer_bal_form' class="form">
+        <div class="form-group">
+          <input autofocus type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter Game ID">
+        </div>
+        <div class="form-group">
+          <label for="bonus_reason">How Would you like to transfer balance</label>
+          <select name="bonus_reason" id="bonus_reason" class="form-control">
+            <option value="Wallet">Wallet </option>
+            <option value="Game">Game</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="transfer_bal_gamename" class="form-control" placeholder="Enter To Game">
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="transfer_bal_mobile" class="form-control" placeholder="Enter Mobile No">
+        </div>
+       
+        <br>
+             
+        <div class="form-group">
+          <button  class="btn btn-primary transfer_bal_submit" type="button">Submit</button>
+          <button  class="btn btn-primary transfer_bal_cancel" style="float:right" type="button">Cancel</button>
+        </div>
+        
+    
+      </form>
+    </script>
+
+<script id='deposit_chat_wait' type="text/template">
+  <div class="clearfix"></div>
+  <div autofocus class="left">Please wait while we fetch your form for deposit</div>
+  <div class="clearfix"></div>
+</script>
+<script id='promotion_chat_wait' type="text/template">
+  <div id="promo_chat_wait">
+    <div class="clearfix"></div>
+    <div  autofocus class="left">Please Select the promotion related query</div>
+    <div class="clearfix"></div>
+  </div>
+</script>
+<script id='claim_promotion_chat_wait' type="text/template">
+  <div id="claim_promo_chat_wait">
+    <div class="clearfix"></div>
+  <div class="left">Please enter details to claim your promotion</div>
+  <div class="clearfix"></div>
+  </div>
+  
+</script>
+<script id='available_bonus_chat_wait' type="text/template">
+  <div id="available_bonus_chat_wait">
+    <div class="clearfix"></div>
+    <div class="left">Please enter details to check for available bonus</div>
+    <div class="clearfix"></div>
+  </div>
+ 
+</script>
+<script id='withdraw_chat_wait' type="text/template">
+  <div id="withdrw_chat_wait">
+    <div class="clearfix"></div>
+    <div class="left">Please enter details to withdraw</div>
+    <div class="clearfix"></div>
+  </div>
+</script>
+
+<script id='balance_enquiry_chat_wait' type="text/template">
+  <div id="bal_enq_chat_wait">
+    <div class="clearfix"></div>
+  <div class="left">Please select your query for balance enquiry</div>
+  <div class="clearfix"></div>
+  </div>
+</script>
+<script id='balance_check_chat_wait' type="text/template">
+  <div id="bal_check_chat_wait">
+    <div class="clearfix"></div>
+  <div class="left">Please enter details to check your balance</div>
+  <div class="clearfix"></div>
+  </div>
+</script>
+<script id='balance_transfer_chat_wait' type="text/template">
+  <div id="bal_transfer_chat_wait">
+    <div class="clearfix"></div>
+  <div class="left">Please enter details to transfer balance</div>
+  <div class="clearfix"></div>
+  </div>
+</script>
+<script id='issue_chat_wait' type="text/template">
+  <div id="issue_chat_wait">
+    <div class="clearfix"></div>
+  <div class="left">Please fill the details of your issue</div>
+  <div class="clearfix"></div>
+  </div>
+</script>
+
+<script id="typing_template" type="text/template">
+  <div id="typing" class="typing-left">
+      <img class="typing-img" src='https://media.tenor.com/images/3b36f7623200da438dd4d35181659398/tenor.gif'></img> 
+    </div>
+
+</script>
+
+<script>
+  $(document).ready(function () {
+    var xhr = new XMLHttpRequest();
+
+
+    var main_selection = $('#main_selection').html();
+
+
+    $('.conversation').append(main_selection);
+
+
+
+
+
+
+    $("#bonus").click(function () {
+
+      disableMessaging();
+
+      var bonus_form_template = $('#bonus_form_template').html();
+      var main_selection = $('#main_selection').html();
+      var bonus_selection = $('#bonus_selection').html();
+      var typing_template = $('#typing_template').html();
+
+      $('.conversation').append(bonus_selection);
+      $('.conversation').append(bonus_form_template);
+      $('#msg_input').val('');
+      // document.getElementById('#bonus_form_template').scrollIntoView();
+
+    });
+
+    $('body').on('click', '.bonus_cancel', function (e) {
+      $('#bonus_form').remove()
+      enableMessaging()
+    })
+
+    $('#promotion').click(function () {
+      disableMessaging();
+      var promotion_selection = $('#promotion_selection').html();
+      var promotion_sub_sec = $('#promotion_sub_sec').html();
+      var promotion_chat_wait = $('#promotion_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+
+      $('.conversation').append(promotion_selection);
+      $('.conversation').append(typing_template);
+
+
+      setTimeout(function () {
+        $('#typing').remove();
+        $('#promo_chat_wait').slideUp();
+        $('.conversation').append(promotion_chat_wait);
+        $('.conversation').append(promotion_sub_sec);
+      }, 3000);
+      $('#msg_input').val('');
+
+    })
+
+    $('body').on('click', '#back_menu', function (e) {
+      var promotion_sub_sec = $('#promotion_sub_sec').html();
+      var promotion_chat_wait = $('#deposit_chat_wait').html();
+
+      $('#promo_sub_sec').remove();
+      $('#promo_chat_wait').remove();
+      enableMessaging();
+    });
+
+    $('body').on('click', '#bal_back_menu', function (e) {
+      var promotion_sub_sec = $('#promotion_sub_sec').html();
+      $('#bal_sub_sec').remove();
+      enableMessaging();
+      $('#msg_input').prop("disabled", true)
+
+    });
+    $('body').on('click', '#claim_promo', function (e) {
+      console.log('Claim Promo')
+      disableMessaging();
+      var claim_promotion_selection = $('#claim_promotion_selection').html();
+      var claim_promotion_template = $('#claim_promo_template').html();
+      var claim_promotion_chat_wait = $('#claim_promotion_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('#promo_sub_sec').hide();
+
+      $('.conversation').append(claim_promotion_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+        $('#typing').remove();
+        $('#claim_promo_chat_wait').slideUp();
+        $('.conversation').append(claim_promotion_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+        $('.conversation').append(claim_promotion_template);
+
+      }, 5000)
+
+
+
+      $('#msg_input').val('');
+    });
+
+    $('body').on('click', '.claim_promo_cancel', function (e) {
+      var claim_promotion_template = $('#claim_promo_template').html();
+      var promotion_sub_sec = $('#promo_sub_sec').html();
+
+
+      console.log(claim_promotion_template);
+      $('.conversation').append($('#promo_sub_sec').show());
+      $('#claim_promo_chat_wait').remove();
+      $('#promo_chat_wait').remove();
+      $('#claim_promo_form').remove();
+
+    });
+
+
+    $('body').on('click', '#check_balance', function (e) {
+      disableMessaging();
+      var check_balance_selection = $('#check_balance_selection').html();
+      var check_bal_template = $('#check_bal_template').html();
+      var balance_check_chat_wait = $('#balance_check_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('#bal_sub_sec').hide();
+      console.log($('#bal_sub_sec'));
+      $('.conversation').append(check_balance_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+
+        $('#typing').remove()
+        $('#balance_check_chat_wait').slideUp();
+        $('.conversation').append(balance_check_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove()
+        $('.conversation').append(check_bal_template);
+      }, 5000)
+
+      $('#msg_input').val('');
+    });
+
+    $('body').on('click', '#transfer_balance', function (e) {
+      disableMessaging();
+      var check_balance_selection = $('#transfer_balance_selection').html();
+      var check_bal_template = $('#transfer_bal_template').html();
+      var balance_transfer_chat_wait = $('#balance_transfer_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+      $('#bal_sub_sec').hide();
+      $('.conversation').append(check_balance_selection);
+      $('.conversation').append(typing_template);
+
+
+      setTimeout(function () {
+
+        $('#typing').remove();
+        $('#bal_transfer_chat_wait').slideUp();
+        $('.conversation').append(balance_transfer_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+        $('.conversation').append(check_bal_template);
+      }, 5000)
+
+      $('#msg_input').val('');
+    });
+
+    $('body').on('click', '#bonus_available', function (e) {
+      console.log('Claim Bonus');
+      disableMessaging();
+      var claim_promotion_selection = $('#bonus_available_selection').html();
+      var claim_promotion_template = $('#bonus_available_template').html();
+      var claim_promo_chat_wait = $('#available_bonus_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+      $('#promo_sub_sec').hide();
+      $('.conversation').append(claim_promotion_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+        $('#typing').remove();
+
+        $('#available_bonus_chat_wait').slideUp();
+        $('.conversation').append(claim_promo_chat_wait);
+        $('.conversation').append(typing_template);
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+        $('.conversation').append(claim_promotion_template);
+      }, 5000);
+      $('#msg_input').val('');
+    });
+
+    $('body').on('click', '.bonus_available_cancel', function (e) {
+      var claim_promotion_template = $('#bonus_available_template').html();
+      var promotion_sub_sec = $('#promo_sub_sec').html();
+      console.log('Hi');
+      console.log(claim_promotion_template);
+      $('.conversation').append($('#promo_sub_sec').show());
+      $('#bonus_available_form').remove();
+
+    });
+
+
+    $("#deposit").click(function () {
+      disableMessaging();
+      var deposit_form_template = $('#deposit_form_template').html();
+      var deposit_selection = $('#deposit_selection').html();
+      var deposit_chat_wait = $('#deposit_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('.conversation').append(deposit_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+        $('#typing').remove();
+        $('.conversation').append(deposit_chat_wait);
+      }, 3000);
+      setTimeout(function () {
+        $('.conversation').append(deposit_form_template);
+      }, 5000);
+      $('#msg_input').val('');
+      // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
+
+    });
+    $('body').on('click', '.deposit_cancel', function (e) {
+      $('#deposit_form').remove()
+      enableMessaging()
+    })
+    $("#balance").click(function () {
+      disableMessaging();
+      var balance_selection = $('#balance_selection').html();
+      var balance_sub_sec = $('#balance_sub_sec').html();
+      var balance_enquiry_chat_wait = $('#balance_enquiry_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('.conversation').append(balance_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+        $('#typing').remove();
+
+
+        $('#claim_promo_chat_wait').slideUp();
+        $('.conversation').append(balance_enquiry_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+
+        $('.conversation').append(balance_sub_sec);
+
+      }, 5000)
+
+
+      $('#msg_input').val('');
+      // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
+
+    });
+    $('body').on('click', '.bal_cancel', function (e) {
+      var claim_promotion_template = $('#check_bal_template').html();
+      var promotion_sub_sec = $('#bal_sub_sec').html();
+      $('.conversation').append($('#bal_sub_sec').show());
+      $('#check_bal_form').remove();
+      $('#bal_enq_chat_wait').remove();
+
+    });
+    $('body').on('click', '.transfer_bal_cancel', function (e) {
+      var claim_promotion_template = $('#transfer_bal_template').html();
+      var promotion_sub_sec = $('#bal_sub_sec').html();
+      $('.conversation').append($('#bal_sub_sec').show());
+      $('#transfer_bal_form').remove();
+      $('#transfer_balance_chat_wait').remove();
+
+
+    })
+    $('body').on('click', '.check_bal_cancel', function (e) {
+      var claim_promotion_template = $('#check_bal_template').html();
+      var promotion_sub_sec = $('#bal_sub_sec').html();
+      $('.conversation').append($('#bal_sub_sec').show());
+      $('#check_bal_form').remove();
+      $('#balance_check_chat_wait').remove();
+
+
+    })
+    $("#withdrawal").click(function () {
+      disableMessaging();
+      var withdraw_form_template = $('#withdraw_form_template').html();
+      var withdraw_selection = $('#withdraw_selection').html();
+      var withdraw_chat_wait = $('#withdraw_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('.conversation').append(withdraw_selection);
+      $('.conversation').append(typing_template);
+
+
+
+      setTimeout(function () {
+        $('#typing').remove();
+
+        $('#withdrw_chat_wait').slideUp();
+        $('.conversation').append(withdraw_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+
+        $('.conversation').append(withdraw_form_template);
+      }, 5000);
+      $('#msg_input').val('');
+      // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
+
+    });
+    $('body').on('click', '.withdraw_cancel', function (e) {
+      $('#withdraw_form').remove()
+      $('#withdrw_chat_wait').remove()
+      enableMessaging()
+    })
+    $("#troubleshooting").click(function () {
+      disableMessaging();
+      var issue_form_template = $('#issue_form_template').html();
+      var troubleshooting_selection = $('#troubleshooting_selection').html();
+      var issue_chat_wait = $('#issue_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('.conversation').append(troubleshooting_selection);
+      $('.conversation').append(typing_template);
+
+
+      setTimeout(function () {
+        $('#typing').remove();
+
+        $('#issue_chat_wait').slideUp();
+        $('.conversation').append(issue_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+
+        $('.conversation').append(issue_form_template);
+
+      }, 5000)
+      $('#msg_input').val('');
+      // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
+
+    });
+    $('body').on('click', '.issue_cancel', function (e) {
+      $('#issue_form').remove()
+      $('#issue_chat-wait').remove()
+      enableMessaging()
+    })
+
+    $(".close").click(function () {
+      $(this).hide();
+      $(".message").hide();
+      $(".open").show();
+    });
+
+    $(".open").click(function () {
+      $(this).hide();
+      $(".message").show();
+      $(".open").hide();
+      $(".close").show();
+    });
+
+    function enableMessaging() {
+      $('.conversation').append($('#main_menu').show());
+      $('#msg_input').prop("disabled", false)
+      $('.send').prop("disabled", false)
+    }
+
+    function disableMessaging() {
+      $('#main_menu').hide();
+      $('#msg_input').prop("disabled", true);
+      $('.send').prop("disabled", true);
+    }
+
+    /**
+     * Bonus Form Submit
+     */
+    $('body').on('click', '.bonus_submit', function (e) {
+
+      var user_name = $('#bonus_user_name').val();
+      var user_email = $('#bonus_user_email').val();
+      var user_id = $('#bonus_user_id').val();
+      var user_mobile = $('#bonus_user_mobile').val();
+      var user_reason = $('#bonus_reason').val();
+
+      if (user_name && user_email && user_id && user_mobile && user_reason) {
+        var data = {};
+        data.subject = `Bonus Available`
+        data.email = user_email
+        data.description = `Player ID : ${user_id},
+    Mobile No : ${user_mobile},
+    Name : ${user_name},
+    Issue : ${user_reason}
+    `
+
+        var user_msg_converted = `<div class="right">
+        Issue : ${user_reason}
+        <br>
+        Name : ${user_name} 
+        <br>
+        Email : ${user_email}
+        <br>
+        Mobile No : ${user_mobile} 
+        <br>
+        Player ID : ${user_id} 
+</div><div class="clearfix"></div>`
+        callAjax(data, function (msg) {
+          enableMessaging()
+          $('#bonus_form').remove();
+
+
+          $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          enableMessaging()
+          $('#bonus_form').remove();
+
+
+          $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+        })
+
+
+      } else {
+        $('#bonus_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_bonus_form()
+      }
+
+    });
+
+    /**
+     * Transfer Balance Submit
+     */
+    $('body').on('click', '.transfer_bal_submit', function (e) {
+
+      var user_id = $('#transfer_bal_gameid').val();
+      var from_transfer = $('#bonus_reason').val();
+      var user_game_name = $('#transfer_bal_gamename').val();
+      var user_mobile = $('#transfer_bal_mobile').val();
+
+
+      if (from_transfer && user_id && user_mobile && user_game_name) {
+        var data = {};
+        data.subject = `Transfer Balance`
+        data.userid = user_id
+        data.gamename = user_game_name
+        data.fromtransfer = from_transfer
+        data.usercontact = user_mobile
+        data.description = `No Description`
+
+        console.log(data);
+
+        callAjax(data, function (msg) {
+          enableMessaging()
+          $('#transfer_bal_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          enableMessaging()
+          $('#transfer_bal_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+        })
+
+
+      } else {
+        $('#transfer_bal_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_bonus_form()
+      }
+
+    });
+
+
+
+    $('body').on('click', '.deposit_submit', function (e) {
+      
+
+      var user_name = $('#deposit_user_name').val();
+      var game_name = $('#deposit_game_name').val();
+      var user_mobile = $('#deposit_user_mobile').val();
+      var user_image = $('#upload_deposit').val();
+
+      
+
+     
+
+     
+      if (user_name && game_name && user_mobile && user_image ) {
+      
+        data =  $('#deposit_form');
+
+
+        callFDAjax(data, function (msg) {
+
+          $('#deposit_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          $('#deposit_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        })
+
+
+      } else {
+        $('#deposit_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_deposit_form()
+
+      }
+
+    });
+
+    /**
+     *Claim Promotion 
+     */
+    $('body').on('click', '.claim_promo_submit', function (e) {
+
+      var game_id = $('#promo_game_id').val();
+      var game_name = $('#promo_game_name').val();
+      var user_mobile = $('#promo_user_mobile').val();
+
+
+
+      if (game_id && game_name && user_mobile) {
+        var data = {};
+        data.subject = "Claim Promotion"
+        data.gamename = game_name;
+        data.userid = game_id;
+        data.usercontact = user_mobile;
+
+
+        data.description = `No Description`
+        console.log(data);
+
+        callAjax(data, function (msg) {
+          $('#claim_promo_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          $('#claim_promo_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        })
+
+
+      } else {
+        $('#deposit_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_deposit_form()
+
+      }
+
+    });
+
+    /**
+     *Bonus Available 
+     */
+    $('body').on('click', '.bonus_available_submit', function (e) {
+
+
+      var game_name = $('#bonus_available_game_name').val();
+      var user_mobile = $('#bonus_available_user_mobile').val();
+
+
+
+      if (game_name && user_mobile) {
+        var data = {};
+        data.subject = "Bonus Available"
+        data.gamename = game_name;
+        data.usercontact = user_mobile;
+
+
+        data.description = `No Description`
+        console.log(data);
+
+        callAjax(data, function (msg) {
+          $('#bonus_available_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          $('#bonus_available_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        })
+
+
+      } else {
+        $('#deposit_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_deposit_form()
+
+      }
+
+    });
+
+
+    /**
+     *Check balance Function
+     */
+    $('body').on('click', '.check_bal_submit', function (e) {
+
+
+      var game_name = $('#check_bal_gameid').val();
+      var user_mobile = $('#check_bal_mobile').val();
+
+
+
+      if (game_name && user_mobile) {
+        var data = {};
+        data.subject = "Check Balance"
+        data.userid = game_name;
+        data.usercontact = user_mobile;
+
+
+        data.description = `No Description`
+        console.log(data);
+
+        callAjax(data, function (msg) {
+          $('#bonus_available_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          $('#bonus_available_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        })
+
+
+      } else {
+        $('#deposit_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_deposit_form()
+
+      }
+
+    });
+
+
+
+
+    /**
+     * Withdraw Submit Function
+     */
+
+    $('body').on('click', '.withdraw_submit', function (e) {
+
+      var user_name = $('#withdraw_user_name').val();
+      var user_id = $('#withdraw_user_id').val();
+      var user_mobile = $('#withdraw_user_mobile').val();
+
+
+      if (user_name && user_id && user_mobile) {
+        var data = {};
+        data.subject = `Withdraw`;
+        data.playername = user_name;
+        data.userid = user_id;
+        data.usercontact = user_mobile;
+        data.description = `No Description`;
+
+        callAjax(data, function (msg) {
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+          $('#withdraw_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+
+        }, function (err) {
+          enableMessaging()
+          $('#withdraw_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+        })
+
+
+      } else {
+
+        $('#withdraw_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_withdraw_form()
+      }
+
+    });
+    /**
+     * Balance Submit Function
+     */
+    $('body').on('click', '.bal_submit', function (e) {
+
+      console.log('Submit');
+      var bal_company_id = $('#bal_company_id').val();
+      var bal_game = $('#bal_game').val();
+      var user_id = $('#bal_playerid').val();
+
+
+
+
+      if (bal_company_id && bal_game && user_id) {
+        var data = {};
+        data.companyid1 = parseInt(bal_company_id)
+        data.productid = bal_game
+        data.playerid = user_id
+
+        var user_msg_converted = `<div class="right">
+    
+    <br>
+    Player ID : ${user_id} 
+    <br>
+    Product  : ${bal_game}
+    <br>
+    
+    
+</div><div class="clearfix"></div>`
+        callAjaxBalEnquiry(data, function (msg) {
+          $('#bal_form').remove();
+
+
+          $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Balance: ${msg['data']['balance']}<br>Total Withdrawl : ${msg['data']['withdrawamount']} <br>Total Topup : ${msg['data']['topupamount']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        }, function (err) {
+          $('#bal_form').remove();
+
+          $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+
+        })
+
+
+      } else {
+        $('#issue_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_bal_form()
+      }
+
+    });
+
+    /**
+     * issue Submit Function
+     */
+
+    $('body').on('click', '.issue_submit', function (e) {
+
+      var user_name = $('#issue_user_name').val();
+      var game_name = $('#issue_game_name').val();
+      var game_id = $('#issue_game_id').val();
+      var user_mobile = $('#issue_user_mobile').val();
+      var user_description = $('#issue_description').val();
+      var upload_issue = $('#upload_issue').val();
+
+
+
+      if (user_name && game_id && game_name && user_mobile && user_description && upload_issue) {
+        var data = $('#issue_form');
+       
+       console.log(data);
+        callFDAjax(data, function (msg) {
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          enableMessaging()
+          $('#issue_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+         
+        }, function (err) {
+          enableMessaging()
+          $('#issue_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+        })
+
+
+      } else {
+        $('#issue_form').remove();
+        $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
+        display_issue_form()
+      }
+
+    });
+
+    function scrollToBottom() {
+      const conversation = document.getElementsByClassName('conversation');
+      console.log(conversation.scrollHeight);
+      conversation.scrollTop = conversation.scrollHeight;
+      console.log('Calling Scroll to bottom ', conversation.scrollTop)
+    }
+
+    /**
+     * Display Form for Bonus
+     */
+
+    var display_bonus_form = () => {
+      disableMessaging()
+      // $('.conversation').append(`<div class="right">1</div><div class="clearfix"></div>`)
+
+      var bonus_form_template = $('#bonus_form_template').html();
+      $('.conversation').append(bonus_form_template)
+      $('#msg_input').val('')
+
+    }
+
+
+    /**
+     * Display Form for Deposit
+     */
+
+    var display_deposit_form = () => {
+      disableMessaging()
+      // $('.conversation').append(`<div class="right">2</div><div class="clearfix"></div>`)
+
+      var deposit_form_template = $('#deposit_form_template').html();
+      $('.conversation').append(deposit_form_template)
+      $('#msg_input').val('')
+
+    }
+
+    /**
+     * Display Form for withdraw
+     */
+
+    var display_withdraw_form = () => {
+      disableMessaging()
+      // $('.conversation').append(`<div class="right">4</div><div class="clearfix"></div>`)
+
+      var withdraw_form_template = $('#withdraw_form_template').html();
+      $('.conversation').append(withdraw_form_template)
+      $('#msg_input').val('')
+
+    }
+    /**
+     * Display Form for troubleshooting
+     */
+
+    var display_issue_form = () => {
+      disableMessaging()
+      // $('.conversation').append(`<div class="right">5</div><div class="clearfix"></div>`)
+
+      var issue_form_template = $('#issue_form_template').html();
+      $('.conversation').append(issue_form_template)
+      $('#msg_input').val('')
+
+    }
+
+    /**
+     * Display Form for balance enquiry form
+     */
+
+    var display_bal_form = () => {
+      disableMessaging()
+      // $('.conversation').append(`<div class="right">3</div><div class="clearfix"></div>`)
+
+      var bal_form_template = $('#bal_form_template').html();
+      $('.conversation').append(bal_form_template)
+      $('#msg_input').val('')
+
+    }
+
+    function callAjaxBalEnquiry(data, done, fail) {
+      var request = $.ajax({
+        url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/bal-inquiry",
+        method: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+      });
+
+      request.done(done);
+
+      request.fail(fail);
+    }
+
+
+    function callAjax(data, done, fail) {
+      console.log(data);
+      var request = $.ajax({
+        // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
+        url:"http://awseb-e-d-AWSEBLoa-XXX1GGA6EKXF-1071801615.ap-southeast-1.elb.amazonaws.com/api/ticketid",
+        // url: "http://6c2f49c2.ngrok.io/api/ticketid",
+        method: "POST",
+        // data:   data,
+        data: JSON.stringify(data),
+        cache: false,
+        contentType: "application/json; charset=utf-8",
+        processData: false,
+      });
+
+      request.done(done);
+
+      request.fail(fail);
+    }
+  });
+
+
+  function callFDAjax(form, done, fail) {
+    var frm = form;
+    console.log('form data', form)
+    var formdata = false;
+    if (window.FormData) {
+      formdata = new FormData(form[0]);
+
+      console.log('Reached')
+    }
+    var request = $.ajax({
+      url:"http://awseb-e-d-AWSEBLoa-XXX1GGA6EKXF-1071801615.ap-southeast-1.elb.amazonaws.com/api/ticketraised",
+      // url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
+      data: formdata ? formdata : form.serialize(),
+      cache: false,
+      contentType: false,
+      processData: false,
+      type: 'POST',
+    });
+
+
+    request.done(done);
+
+    request.fail(fail);
+
+  }
+
+  /**
+   * Deposit Submit Function
+   */
+  // $('body').on('click', '.deposit_submit', function (e) {
+
+  //   console.log('Reached');
+  //   e.preventDefault();
+  //   var form = $('#deposit_form');
+  //   console.log('form data', form)
+
+
+  //   var formdata = false;
+  //   if (window.FormData) {
+  //     formdata = new FormData(form[0]);
+
+  //     console.log('Reached')
+  //   }
+  //   // var formAction = form.attr('action');
+  //   console.log(form.serialize())
+
+  //   $.ajax({
+  //     url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
+  //     data: formdata ? formdata : form.serialize(),
+  //     cache: false,
+  //     contentType: false,
+  //     processData: false,
+  //     type: 'POST',
+  //     success: function (data, textStatus, jqXHR) {
+  //       // Callback code
+  //     }
+  //   });
+  // });
+
+  // $('body').on('click', '.issue_submit', function (e) {
+  //   var user_name = $('#issue_user_name').val();
+  //   var game_name = $('#issue_game_name').val();
+  //   var game_id = $('#issue_game_id').val();
+  //   var user_mobile = $('#issue_user_mobile').val();
+  //   var user_description = $('#issue_description').val();
+  //   var upload_issue = $('#upload_issue').val();
+
+
+
+  //   if (user_name && game_id && game_name && user_mobile && user_description && upload_issue) {
+
+  //   }
+  //   console.log('Reached');
+  //   e.preventDefault();
+  //   var form = $('#issue_form');
+  //   console.log('form data', form)
+
+
+  //   var formdata = false;
+  //   if (window.FormData) {
+  //     formdata = new FormData(form[0]);
+
+  //     console.log('Reached')
+  //   }
+  //   // var formAction = form.attr('action');
+  //   console.log(form.serialize())
+
+  //   $.ajax({
+  //     url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
+  //     data: formdata ? formdata : form.serialize(),
+  //     cache: false,
+  //     contentType: false,
+  //     processData: false,
+  //     type: 'POST',
+  //     success: function (data, textStatus, jqXHR) {
+  //       // Callback code
+  //     }
+  //   });
+  // });
+</script>
+
+</html>

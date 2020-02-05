@@ -1,0 +1,276 @@
+.chat{
+  width: 370px;
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  border: 1px solid #3C86C4;
+  border-radius: 10px;
+  padding: 0px 0px 10px 0px;
+  background: #3C86C4;
+}
+button{
+  border: 1px solid #3C86C4;
+  font-size: 12px!important;
+  font-weight: 600!important;
+  border-radius: 20px!important;
+  padding: 7px!important;
+  color: #4191d3!important;
+  margin-bottom: 5px!important;
+  outline-style: none!important;
+  background: unset!important;
+}
+.message{
+  background: #fff;
+  padding: 15px;
+}
+.status{
+  padding: 10px;
+  color: #fff;
+}
+.dot-green{
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background: #1dd01d;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.left{
+  max-width: 70%;
+  border: 1px solid #3C86C4;
+  border-radius: 25px;
+  padding: 10px;
+  font-size: 12px;
+  margin-bottom:15px;
+  font-weight: 500;
+  display: block;
+}
+.typing-left{
+  max-width: 70%;
+  /* border: 1px solid #3C86C4; */
+  border-radius: 25px;
+  padding: 0px;
+  /* font-size: 12px; */
+  margin-bottom: 15px;
+  /* font-weight: 500; */
+  display: block;
+}
+
+.typing-img{
+  width: 32% !important;
+  border-radius:25px;
+}
+.right{
+  max-width: 70%;
+  background: #4191D3;
+  border: 1px solid #3C86C4;
+  border-radius: 25px;
+  padding: 10px;
+  font-size: 12px;
+  margin-bottom:15px;
+  color: #fff;
+  font-weight: 500;
+  float: right;
+  display: block;
+}
+input{
+  width: 78%;
+  border: 0px;
+  border-top: 2px solid #ddd;
+  margin-right: 2%;
+  margin-top: 4px!important;
+  font-size: 11px!important;
+  outline-style: none;
+}
+label, select{
+  font-size: 11px !important;
+}
+.form-control{
+  padding: .075rem .55rem !important;
+}
+.form-group{
+  margin: 0 !important;
+}
+.send{
+  width: 20%;
+  border: unset;
+  text-align: right;
+}
+.send img{
+  width: 40px;
+}
+.files button{
+  border: 0px!important;
+  padding: 0px!important;
+  margin-right: 25px;
+}
+.files span{
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  color: #888;
+  font-size: 15px;
+}
+.conversation{
+  height: 300px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar { 
+  display: none; 
+}
+.detail{
+  color: #fff;
+  font-size: 20px;
+  background: #59a7e6;
+  border-radius: 10px 10px 0px 0px;
+  padding: 10px;
+  position: relative;
+}
+.detail img{
+  margin-right: 10px;
+  width: 55px;
+}
+.close {
+  position: absolute;
+  right: 32px;
+  top: 15px;
+  width: 15px;
+  height: 15px;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 15px;
+  width: 2px;
+  background-color: #fff;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.open{
+  border: unset;
+}
+.open img{
+  width: 18px;
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+form {
+  border-radius: 10px;
+  padding: 10px 10px;
+  width: 70%;
+  border: 1px solid #59a7e6;
+}
+
+
+
+
+@media screen and (max-width: 420px) and (max-height: 830px)  {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 68vh;
+  }
+}
+
+@media screen and (max-width: 420px) and (max-height: 736px)  {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 65vh;
+  }
+}
+
+
+
+@media screen and (max-width: 420px) and (max-height: 731px)  {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 64vh;
+  }
+}
+
+
+@media screen and (max-width: 380px)  and (max-height: 812px)   {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 68vh;
+  }
+}
+
+@media screen and (max-width: 380px)  and (max-height: 667px)   {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 61vh;
+  }
+}
+
+
+@media screen and (max-width: 360px) {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 59vh;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .chat{
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 0px;
+  }
+
+  .conversation{
+    height: 54vh;
+  }
+}
