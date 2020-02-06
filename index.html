@@ -26,8 +26,9 @@
           </div>
           <!-- <div class="right">I'm looking for staff solutions</div>
           <div class="clearfix"></div> -->
-          <div class="left">Which kind of service you looking for?</div>
+          <div class="left">Please enter your personal details</div>
           <div class="clearfix"></div>
+          
 
         </div>
         <input type="text" id="msg_input" placeholder="Enter your message..."><button class="send"><img src="plane.png"
@@ -42,6 +43,8 @@
 
 <script id='main_selection' type="text/template">
   <div id='main_menu'>
+    <div class="left">Which kind of service you looking for?</div>
+    <div class="clearfix"></div>
     <!-- <button id='bonus'>Bonus</button>
     <div class="clearfix"></div> -->
     <button id='deposit'>Deposit</button>
@@ -71,7 +74,7 @@
   </script>
   <script id='game_list_selection' type="text/template">
     <div class="clearfix"></div>
-      <div class="right">Below is the list of available games</div>
+      <div class="left">Below is the list of available games</div>
       <div class="clearfix"></div>
     </script>
 <script id='balance_selection' type="text/template">
@@ -110,7 +113,7 @@
 
 <script id='check_balance_selection' type="text/template">
   <div class="clearfix"></div>
-    <div class="right">Check Balancee</div>
+    <div class="right">Check Balance</div>
     <div class="clearfix"></div>
  </script>
 
@@ -166,6 +169,22 @@
 
   </form>
 </script>
+
+<script id="initial_form_template" type='text/template'>
+  <form id='initial_form' class="form">
+    <div class="form-group">
+      <input type="text" autofocus name="" id="user_mobile_main" class="form-control" placeholder="Enter Mobile Number">
+    </div>
+    <br>
+    <div class="form-group">
+      <button  class="btn btn-primary main_mobile_submit" type="button">Submit</button>
+      <button  class="btn btn-primary main_cancel" style="float:right" type="button">Cancel</button>
+    </div>
+    
+
+  </form>
+</script>
+
 
 <script id="bonus_available_template" type="text/template">
   <form id='bonus_available_form' class="form">
@@ -539,17 +558,21 @@
 <script>
   $(document).ready(function () {
     var xhr = new XMLHttpRequest();
- 
-    var main_selection = $('#main_selection').html();
-    $('.conversation').append(main_selection);
- 
-    console.log(game_list);
+    var mobile = $('#user_main_mobile').val() ;
+    document.getElementById("deposit_user_mobile").val() = mobile;
 
+    var initial_form_template = $('#initial_form_template').html();
+    var main_selection = $('#main_selection').html();
+    $('.conversation').append(initial_form_template);
+    
+    $('.conversation').append(main_selection);
+    $('#main_menu').hide()
+    // $('.conversation').append($('#main_selection').html().hide());
 
     $('body').on('click', '.promo_list_cancel', function (e) {
       var claim_promotion_template = $('#promotion_list_template').html();
       var promotion_sub_sec = $('#promo_sub_sec').html();
-
+      
 
       console.log(claim_promotion_template);
       $('.conversation').append($('#promo_sub_sec').show());
@@ -559,7 +582,24 @@
 
     });
 
+    $('body').on('click', '.main_mobile_submit', function (e) {
+      disableMessaging();
+     
+      // main_selection.hide();
+      this.mobile = $('#user_mobile_main').val();
+      if(this.mobile.length > 0){
+        $('#initial_form').remove();
+        $('.conversation').append($('#main_menu').show());
+      
+      }else{
+        // $('#main_menu').remove;
+        $('#initial_form').remove();
+        $('.conversation').append(initial_form_template);
 
+      }
+
+    })
+    
 
 
 
