@@ -24,8 +24,8 @@
             Welcome to xxx, talk to our chatbot to grand easy access / faster responese
             <!-- Hi there, welcome to our side. How can we help you? -->
           </div>
-          <div class="right">I'm looking for staff solutions</div>
-          <div class="clearfix"></div>
+          <!-- <div class="right">I'm looking for staff solutions</div>
+          <div class="clearfix"></div> -->
           <div class="left">Which kind of service you looking for?</div>
           <div class="clearfix"></div>
 
@@ -46,7 +46,7 @@
     <div class="clearfix"></div> -->
     <button id='deposit'>Deposit</button>
     <div class="clearfix"></div>
-    <button id='deposit'>Game List</button>
+    <button id='game_list'>Game List</button>
     <div class="clearfix"></div>
     <button id='promotion'>Promotion</button>
     <div class="clearfix"></div>
@@ -69,6 +69,11 @@
     <div class="right">Deposit</div>
     <div class="clearfix"></div>
   </script>
+  <script id='game_list_selection' type="text/template">
+    <div class="clearfix"></div>
+      <div class="right">Below is the list of available games</div>
+      <div class="clearfix"></div>
+    </script>
 <script id='balance_selection' type="text/template">
   <div class="clearfix"></div>
     <div class="right">Balance Enquiry</div>
@@ -425,19 +430,134 @@
   <div id="typing" class="typing-left">
       <img class="typing-img" src='https://media.tenor.com/images/3b36f7623200da438dd4d35181659398/tenor.gif'></img> 
     </div>
-
 </script>
 
+
+<script id="promotion_list_template" type="text/template">
+  <div id="promotion_list">
+      <div class="row text-center">
+       <div class="clearfix"></div>
+        <div class="col-2 col-md-2"> 
+          <button target='_blank' onclick='window.open("http:/\/\ecwin888.cf/en/promotion")'>ECWIN</button>
+        </div>
+        <div class="col-2 col-md-2"> 
+          <button target='_blank' onclick='window.open("http:\/\/bwins888.cf/en/promotion")' >BWIN</button>
+        </div>
+        <div class="col-1 col-md-1"> 
+          <button target='_blank' onclick='window.open("http:/\/\gsc88.cf/en/promotion")' >GSC</button>
+        </div>
+        <div class="col-2 col-md-2 col-half-offset"> 
+          <button target='_blank' onclick='window.open("http:\/\/vwon888.cf/en/promotion")'>VWON</button>
+        </div>
+        <div class="col-2 col-md-2"> 
+          <button target='_blank' onclick='window.open("http:\/\/vegas28.cf/en/promotion")'>Vegas</button>
+        </div>
+        <div class="col-2 col-md-2"> 
+          <button class="promo_list_cancel" >Back</button>
+        </div>
+      </div>
+    </div>
+</script>
+
+<script class="game_list_template" type="text/template">
+  <div class="game_list">
+    <div class="clearfix"></div>
+    <div class="card">
+      <div class="row">
+        <div class="text-center left">
+          【LIVE Casino】
+            GOLD DELUXE
+            ALL BET
+          Galaxy Suite 
+          Leocity88 live
+          Premium Suite
+          AG Deluxe Suite
+          DREAM GAMING
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id='game_list_template' type="text/template">
+  <div id='game_menu'>
+    <!-- <button id='bonus'>Bonus</button> -->
+    <div class="clearfix"></div>
+    <button class="text-center">
+      【LIVE Casino】
+      GOLD DELUXE,
+      ALL BET,
+      Galaxy Suite, 
+      Leocity88 live,
+      Premium Suite,
+      AG Deluxe Suite,
+      DREAM GAMING
+    </button>
+    <div class="clearfix"></div>
+    <button class='text-center'>
+      【Slot Game】 
+      Microgaming,
+      Leocity88 Slot,
+      Rotal 3D,
+      Maxim,
+      Ace Games,
+    </button>
+    <div class="clearfix"></div>
+    <button class='text-center'>
+      【SIde Casino 7 -11】 
+      SCR888 (918Kiss),
+      ACE333,
+      Gold City,
+      Newtown,
+      3WIN8,
+      Joker,
+      Greatwall99,
+      LIVE22,
+      MEGA888,
+      PUSSY888,
+      SKY777,
+    </button>
+    <div class="clearfix"></div>
+    <button class="text-center">
+      【Other game】 
+      Hunt Fish
+      Cock fight 
+      ALL BET
+    </button>
+    <div class="clearfix"></div>
+    <button class="text-center">
+      【Sport】 
+      M-sport,
+      S-sport,
+    </button>
+    <div class="clearfix"></div>
+    <button  class="game_list_back text-center">
+      Back
+    </button>
+   </div>
+  </script>
 <script>
   $(document).ready(function () {
     var xhr = new XMLHttpRequest();
-
-
+ 
     var main_selection = $('#main_selection').html();
-
-
     $('.conversation').append(main_selection);
+ 
+    console.log(game_list);
 
+
+    $('body').on('click', '.promo_list_cancel', function (e) {
+      var claim_promotion_template = $('#promotion_list_template').html();
+      var promotion_sub_sec = $('#promo_sub_sec').html();
+
+
+      console.log(claim_promotion_template);
+      $('.conversation').append($('#promo_sub_sec').show());
+      $('#promotion_list').remove();
+      $('#promo_chat_wait').remove();
+      // $('#claim_promo_form').remove();
+
+    });
 
 
 
@@ -502,6 +622,36 @@
       $('#msg_input').prop("disabled", true)
 
     });
+    $('body').on('click', '#promotion_type', function (e) {
+      console.log('Claim Promo')
+      disableMessaging();
+      var claim_promotion_selection = $('#claim_promotion_selection').html();
+      var claim_promotion_template = $('#promotion_list_template').html();
+      var claim_promotion_chat_wait = $('#claim_promotion_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('#promo_sub_sec').hide();
+
+      // $('.conversation').append(claim_promotion_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+        $('#typing').remove();
+        $('#claim_promo_chat_wait').slideUp();
+        // $('.conversation').append(claim_promotion_chat_wait);
+        $('.conversation').append(typing_template);
+
+      }, 3000);
+      setTimeout(function () {
+        $('#typing').remove();
+        $('.conversation').append(claim_promotion_template);
+
+      }, 5000)
+
+
+
+      $('#msg_input').val('');
+    });
     $('body').on('click', '#claim_promo', function (e) {
       console.log('Claim Promo')
       disableMessaging();
@@ -531,6 +681,19 @@
 
 
       $('#msg_input').val('');
+    });
+
+    $('body').on('click', '.claim_promo_cancel', function (e) {
+      var claim_promotion_template = $('#claim_promo_template').html();
+      var promotion_sub_sec = $('#promo_sub_sec').html();
+
+
+      console.log(claim_promotion_template);
+      $('.conversation').append($('#promo_sub_sec').show());
+      $('#claim_promo_chat_wait').remove();
+      $('#promo_chat_wait').remove();
+      $('#claim_promo_form').remove();
+
     });
 
     $('body').on('click', '.claim_promo_cancel', function (e) {
@@ -659,6 +822,31 @@
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
 
     });
+    $("#game_list").click(function () {
+      disableMessaging();
+      var deposit_form_template = $('#game_list_template').html();
+      var deposit_selection = $('#game_list_selection').html();
+      var deposit_chat_wait = $('#deposit_chat_wait').html();
+      var typing_template = $('#typing_template').html();
+
+      $('.conversation').append(deposit_selection);
+      $('.conversation').append(typing_template);
+
+      setTimeout(function () {
+        $('#typing').remove();
+        // $('.conversation').append(deposit_chat_wait);
+      }, 3000);
+      setTimeout(function () {
+        $('.conversation').append(deposit_form_template);
+      }, 5000);
+      $('#msg_input').val('');
+      // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
+
+    });
+    $('body').on('click', '.game_list_back', function (e) {
+      $('#game_menu').remove()
+      enableMessaging()
+    })
     $('body').on('click', '.deposit_cancel', function (e) {
       $('#deposit_form').remove()
       enableMessaging()
@@ -933,21 +1121,21 @@
 
 
     $('body').on('click', '.deposit_submit', function (e) {
-      
+
 
       var user_name = $('#deposit_user_name').val();
       var game_name = $('#deposit_game_name').val();
       var user_mobile = $('#deposit_user_mobile').val();
       var user_image = $('#upload_deposit').val();
 
-      
 
-     
 
-     
-      if (user_name && game_name && user_mobile && user_image ) {
-      
-        data =  $('#deposit_form');
+
+
+
+      if (user_name && game_name && user_mobile && user_image) {
+
+        data = $('#deposit_form');
 
 
         callFDAjax(data, function (msg) {
@@ -1272,8 +1460,8 @@
 
       if (user_name && game_id && game_name && user_mobile && user_description && upload_issue) {
         var data = $('#issue_form');
-       
-       console.log(data);
+
+        console.log(data);
         callFDAjax(data, function (msg) {
           $('.conversation').append(
             `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
@@ -1283,7 +1471,7 @@
 
 
           // $('.conversation').append(user_msg_converted)
-         
+
         }, function (err) {
           enableMessaging()
           $('#issue_form').remove();
@@ -1399,7 +1587,7 @@
       console.log(data);
       var request = $.ajax({
         // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
-        url:"http://awseb-e-d-AWSEBLoa-XXX1GGA6EKXF-1071801615.ap-southeast-1.elb.amazonaws.com/api/ticketid",
+        url: "http://awseb-e-d-AWSEBLoa-XXX1GGA6EKXF-1071801615.ap-southeast-1.elb.amazonaws.com/api/ticketid",
         // url: "http://6c2f49c2.ngrok.io/api/ticketid",
         method: "POST",
         // data:   data,
@@ -1426,7 +1614,7 @@
       console.log('Reached')
     }
     var request = $.ajax({
-      url:"http://awseb-e-d-AWSEBLoa-XXX1GGA6EKXF-1071801615.ap-southeast-1.elb.amazonaws.com/api/ticketraised",
+      url: "http://awseb-e-d-AWSEBLoa-XXX1GGA6EKXF-1071801615.ap-southeast-1.elb.amazonaws.com/api/ticketraised",
       // url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
       data: formdata ? formdata : form.serialize(),
       cache: false,
