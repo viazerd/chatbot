@@ -26,7 +26,7 @@
           </div>
           <!-- <div class="right">I'm looking for staff solutions</div>
           <div class="clearfix"></div> -->
-          <div class="left">Please enter your personal details</div>
+          <div  id='personal_info' class="left">Please enter your Mobile Number</div>
           <div class="clearfix"></div>
           
 
@@ -173,7 +173,7 @@
 <script id="initial_form_template" type='text/template'>
   <form id='initial_form' class="form">
     <div class="form-group">
-      <input type="text" autofocus name="" id="user_mobile_main" class="form-control" placeholder="Enter Mobile Number">
+      <input type="number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" autofocus name="" id="user_mobile_main" class="form-control" placeholder="Enter Mobile Number">
     </div>
     <br>
     <div class="form-group">
@@ -589,6 +589,7 @@
       localStorage.setItem('mobile',this.mobileNum);
       if(this.mobileNum.length > 0){
         $('#initial_form').hide();
+        $('#personal_info').remove();
         $('.conversation').append($('#main_menu').show());
         console.log(this.mobileNum);
         
