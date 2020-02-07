@@ -158,7 +158,7 @@
       <input type="text" name="" id="promo_game_id" class="form-control" placeholder="Enter Game ID">
     </div>
     <div class="form-group">
-      <input type="text" name="" id="promo_user_mobile" class="form-control" placeholder="Enter Mobile No">
+      <input type="text" name="" id="promo_user_mobile" readonly class="form-control" placeholder="Enter Mobile No">
     </div>
     <br>
     <div class="form-group">
@@ -177,8 +177,8 @@
     </div>
     <br>
     <div class="form-group">
-      <button  class="btn btn-primary main_mobile_submit" type="button">Submit</button>
-      <button  class="btn btn-primary main_cancel" style="float:right" type="button">Cancel</button>
+      <button  class="btn btn-primary main_mobile_submit"  type="button">Submit</button>
+      <!-- <button  class="btn btn-primary main_cancel" style="float:right" type="button">Cancel</button> -->
     </div>
     
 
@@ -192,7 +192,7 @@
       <input autofocus type="text" name="" id="bonus_available_game_name" class="form-control" placeholder="Enter Game Name">
     </div>
     <div class="form-group">
-      <input type="text" name="" id="bonus_available_user_mobile" class="form-control" placeholder="Enter Mobile No">
+      <input type="text" name=""  readonly id="bonus_available_user_mobile" class="form-control" placeholder="Enter Mobile No">
     </div>
     <br>
     <div class="form-group">
@@ -218,7 +218,7 @@
         <input type="text" name="" id="bonus_user_id" class="form-control" placeholder="Enter Player ID">
       </div>
       <div class="form-group">
-        <input type="text" name="" id="bonus_user_mobile" class="form-control" placeholder="Enter Mobile No">
+        <input type="text" name="" readonly id="bonus_user_mobile" class="form-control" placeholder="Enter Mobile No">
       </div>
       <div class="form-group">
         <label for="bonus_reason">What is you issue?</label>
@@ -253,7 +253,7 @@
           <input type="text" name="gamename" id="deposit_game_name" class="form-control" placeholder="Enter Game Name">
         </div>
         <div class="form-group">
-          <input type="text" name="usercontact" id="deposit_user_mobile" class="form-control" placeholder="Enter Mobile No">
+          <input type="text" readonly name="usercontact" id="deposit_user_mobile" class="form-control" placeholder="Enter Mobile No">
         </div>
         <div class="form-group">
           <label for="upload_deposit">Upload Photo: </label>
@@ -281,7 +281,7 @@
           <input type="text" name="" id="withdraw_user_id" class="form-control" placeholder="Enter Game ID">
         </div>
         <div class="form-group">
-          <input type="text" name="" id="withdraw_user_mobile" class="form-control" placeholder="Enter Mobile No">
+          <input type="text" name="" readonly id="withdraw_user_mobile" class="form-control" placeholder="Enter Mobile No">
         </div>
         <br>
         <div class="form-group">
@@ -308,7 +308,7 @@
         <input type="text" name="userid" id="issue_game_id" class="form-control" placeholder="Enter Game ID">
       </div>
       <div class="form-group">
-        <input type="text" name="usercontact" id="issue_user_mobile" class="form-control" placeholder="Enter Mobile No">
+        <input type="text" readonly name="usercontact" id="issue_user_mobile" class="form-control" placeholder="Enter Mobile No">
       </div>
       <div class="form-group">
         <label for="upload_issue">Upload Photo: </label>
@@ -337,7 +337,7 @@
         <input autofocus type="text" name="" id="check_bal_gameid" class="form-control" placeholder="Enter Game ID">
       </div>
       <div class="form-group">
-        <input type="text" name="" id="check_bal_mobile" class="form-control" placeholder="Enter Mobile No">
+        <input type="text" readonly name="" id="check_bal_mobile" class="form-control" placeholder="Enter Mobile No">
       </div>
      
       <br>
@@ -366,7 +366,7 @@
           <input type="text" name="" id="transfer_bal_gamename" class="form-control" placeholder="Enter To Game">
         </div>
         <div class="form-group">
-          <input type="text" name="" id="transfer_bal_mobile" class="form-control" placeholder="Enter Mobile No">
+          <input type="text" readonly name="" id="transfer_bal_mobile" class="form-control" placeholder="Enter Mobile No">
         </div>
        
         <br>
@@ -556,11 +556,10 @@
    </div>
   </script>
 <script>
+  var mobileNum
   $(document).ready(function () {
     var xhr = new XMLHttpRequest();
-    var mobile = $('#user_main_mobile').val() ;
-    document.getElementById("deposit_user_mobile").val() = mobile;
-
+    this.mobileNum = $('#user_main_mobile').val() ;
     var initial_form_template = $('#initial_form_template').html();
     var main_selection = $('#main_selection').html();
     $('.conversation').append(initial_form_template);
@@ -586,11 +585,13 @@
       disableMessaging();
      
       // main_selection.hide();
-      this.mobile = $('#user_mobile_main').val();
-      if(this.mobile.length > 0){
-        $('#initial_form').remove();
+      this.mobileNum = $('#user_mobile_main').val();
+      localStorage.setItem('mobile',this.mobileNum);
+      if(this.mobileNum.length > 0){
+        $('#initial_form').hide();
         $('.conversation').append($('#main_menu').show());
-      
+        console.log(this.mobileNum);
+        
       }else{
         // $('#main_menu').remove;
         $('#initial_form').remove();
@@ -715,6 +716,8 @@
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(claim_promotion_template);
+        var mobIn = document.getElementById('promo_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
 
       }, 5000)
 
@@ -736,18 +739,6 @@
 
     });
 
-    $('body').on('click', '.claim_promo_cancel', function (e) {
-      var claim_promotion_template = $('#claim_promo_template').html();
-      var promotion_sub_sec = $('#promo_sub_sec').html();
-
-
-      console.log(claim_promotion_template);
-      $('.conversation').append($('#promo_sub_sec').show());
-      $('#claim_promo_chat_wait').remove();
-      $('#promo_chat_wait').remove();
-      $('#claim_promo_form').remove();
-
-    });
 
 
     $('body').on('click', '#check_balance', function (e) {
@@ -773,6 +764,8 @@
       setTimeout(function () {
         $('#typing').remove()
         $('.conversation').append(check_bal_template);
+        var mobInput = document.getElementById("check_bal_mobile");
+        mobInput.value = localStorage.getItem('mobile');
       }, 5000)
 
       $('#msg_input').val('');
@@ -800,6 +793,8 @@
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(check_bal_template);
+        var mobInput = document.getElementById("transfer_bal_mobile");
+        mobInput.value = localStorage.getItem('mobile');
       }, 5000)
 
       $('#msg_input').val('');
@@ -826,6 +821,8 @@
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(claim_promotion_template);
+        var mobIn = document.getElementById('bonus_available_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
       }, 5000);
       $('#msg_input').val('');
     });
@@ -842,6 +839,8 @@
 
 
     $("#deposit").click(function () {
+    
+    
       disableMessaging();
       var deposit_form_template = $('#deposit_form_template').html();
       var deposit_selection = $('#deposit_selection').html();
@@ -850,13 +849,15 @@
 
       $('.conversation').append(deposit_selection);
       $('.conversation').append(typing_template);
-
+      
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(deposit_chat_wait);
       }, 3000);
       setTimeout(function () {
         $('.conversation').append(deposit_form_template);
+        var mobInput = document.getElementById("deposit_user_mobile") ;
+        mobInput.value = localStorage.getItem('mobile'); 
       }, 5000);
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
@@ -972,6 +973,8 @@
         $('#typing').remove();
 
         $('.conversation').append(withdraw_form_template);
+        var mobIn = document.getElementById('withdraw_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
       }, 5000);
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
@@ -1005,6 +1008,8 @@
         $('#typing').remove();
 
         $('.conversation').append(issue_form_template);
+        var mobIn = document.getElementById('issue_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
 
       }, 5000)
       $('#msg_input').val('');
@@ -1670,79 +1675,7 @@
 
   }
 
-  /**
-   * Deposit Submit Function
-   */
-  // $('body').on('click', '.deposit_submit', function (e) {
 
-  //   console.log('Reached');
-  //   e.preventDefault();
-  //   var form = $('#deposit_form');
-  //   console.log('form data', form)
-
-
-  //   var formdata = false;
-  //   if (window.FormData) {
-  //     formdata = new FormData(form[0]);
-
-  //     console.log('Reached')
-  //   }
-  //   // var formAction = form.attr('action');
-  //   console.log(form.serialize())
-
-  //   $.ajax({
-  //     url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
-  //     data: formdata ? formdata : form.serialize(),
-  //     cache: false,
-  //     contentType: false,
-  //     processData: false,
-  //     type: 'POST',
-  //     success: function (data, textStatus, jqXHR) {
-  //       // Callback code
-  //     }
-  //   });
-  // });
-
-  // $('body').on('click', '.issue_submit', function (e) {
-  //   var user_name = $('#issue_user_name').val();
-  //   var game_name = $('#issue_game_name').val();
-  //   var game_id = $('#issue_game_id').val();
-  //   var user_mobile = $('#issue_user_mobile').val();
-  //   var user_description = $('#issue_description').val();
-  //   var upload_issue = $('#upload_issue').val();
-
-
-
-  //   if (user_name && game_id && game_name && user_mobile && user_description && upload_issue) {
-
-  //   }
-  //   console.log('Reached');
-  //   e.preventDefault();
-  //   var form = $('#issue_form');
-  //   console.log('form data', form)
-
-
-  //   var formdata = false;
-  //   if (window.FormData) {
-  //     formdata = new FormData(form[0]);
-
-  //     console.log('Reached')
-  //   }
-  //   // var formAction = form.attr('action');
-  //   console.log(form.serialize())
-
-  //   $.ajax({
-  //     url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
-  //     data: formdata ? formdata : form.serialize(),
-  //     cache: false,
-  //     contentType: false,
-  //     processData: false,
-  //     type: 'POST',
-  //     success: function (data, textStatus, jqXHR) {
-  //       // Callback code
-  //     }
-  //   });
-  // });
 </script>
 
 </html>
