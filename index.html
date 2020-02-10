@@ -278,6 +278,15 @@
           <input autofocus  type="text" name="" id="withdraw_user_name" class="form-control" placeholder="Enter Your Name">
         </div>
         <div class="form-group">
+          <input autofocus  type="text" name="" id="withdraw_amount" class="form-control" placeholder="Enter Your Amount">
+        </div>
+        <div class="form-group">
+          <input autofocus  type="text" name="" id="withdraw_bank" class="form-control" placeholder="Enter Your Bank Name">
+        </div>
+        <div class="form-group">
+          <input autofocus  type="text" name="" id="withdraw_account" class="form-control" placeholder="Enter Your Account">
+        </div>
+        <div class="form-group">
           <input type="text" name="" id="withdraw_user_id" class="form-control" placeholder="Enter Game ID">
         </div>
         <div class="form-group">
@@ -364,6 +373,12 @@
         </div>
         <div class="form-group">
           <input type="text" name="" id="transfer_bal_gamename" class="form-control" placeholder="Enter To Game">
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="transfer_bal_from_game" class="form-control" placeholder="Enter From Game">
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="transfer_bal_amount" class="form-control" placeholder="Enter Amount">
         </div>
         <div class="form-group">
           <input type="text" readonly name="" id="transfer_bal_mobile" class="form-control" placeholder="Enter Mobile No">
@@ -1120,6 +1135,8 @@
       var from_transfer = $('#bonus_reason').val();
       var user_game_name = $('#transfer_bal_gamename').val();
       var user_mobile = $('#transfer_bal_mobile').val();
+      var from_game = $('#transfer_bal_from_game').val();
+      var amount = $('#transfer_bal_amount').val();
 
 
       if (from_transfer && user_id && user_mobile && user_game_name) {
