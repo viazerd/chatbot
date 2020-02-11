@@ -365,18 +365,11 @@
       <input type="text" name="" id="transfer_bal_from_game" class="form-control" placeholder="Enter From Game">
     </div>
         <div class="form-group">
-          <input autofocus type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter From Game Name">
+          <input autofocus type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter From Game Id">
         </div>
         <div class="form-group">
           <input type="text" name="" id="transfer_bal_amount" class="form-control" placeholder="Enter Amount">
         </div>
-        <!-- <div class="form-group">
-          <label for="bonus_reason">How Would you like to transfer balance</label>
-          <select name="bonus_reason" id="bonus_reason" class="form-control">
-            <option value="Wallet">Wallet </option>
-            <option value="Game">Game</option>
-          </select>
-        </div> -->
         <div class="form-group">
           <input type="text" name="" id="transfer_bal_to_gamename" class="form-control" placeholder="Enter To Game Name">
         </div>
@@ -1136,22 +1129,31 @@
     $('body').on('click', '.transfer_bal_submit', function (e) {
 
       var user_id = $('#transfer_bal_gameid').val();
-      var from_transfer = $('#bonus_reason').val();
-      var user_game_name = $('#transfer_bal_gamename').val();
+      // var from_transfer = $('#bonus_reason').val();
+
       var user_mobile = $('#transfer_bal_mobile').val();
       var from_game = $('#transfer_bal_from_game').val();
       var amount = $('#transfer_bal_amount').val();
-
-
-      if (from_transfer && user_id && user_mobile && user_game_name) {
+      var to_game = $('#transfer_bal_to_gamename').val();
+      var to_game_id =$('#transfer_bal_to_gameid').val();
+      console.log(user_id);
+      console.log(user_mobile);
+      console.log(from_game);
+      console.log(amount);
+      console.log(to_game);
+      console.log(to_game_id);
+      if ( user_id && user_mobile && from_game && amount && to_game && to_game_id) {
         var data = {};
         data.subject = `Transfer Balance`
         data.userid = user_id
-        data.gamename = user_game_name
-        data.fromtransfer = from_transfer
+        data.gamename = from_game
+        // data.fromtransfer = from_transfer
         data.usercontact = user_mobile
+        data.amount = amount
+        data.togame = to_game
+        data.touserid = to_game_id
         data.description = `No Description`
-
+        
         console.log(data);
 
         callAjax(data, function (msg) {
@@ -1411,16 +1413,22 @@
       var user_name = $('#withdraw_user_name').val();
       var user_id = $('#withdraw_user_id').val();
       var user_mobile = $('#withdraw_user_mobile').val();
-
-
-      if (user_name && user_id && user_mobile) {
+      var withdraw_account = $('#withdraw_account').val();
+      var withdraw_bank = $('#withdraw_bank').val();
+      var withdraw_amount = $('#withdraw_amount').val()
+      if (user_name && user_id && user_mobile && withdraw_account &&
+withdraw_bank &&
+withdraw_amount) {
         var data = {};
         data.subject = `Withdraw`;
         data.playername = user_name;
         data.userid = user_id;
         data.usercontact = user_mobile;
+        data.amount = withdraw_amount;
+        data.bankname = withdraw_bank;
+        data.bankaccount = withdraw_account; 
         data.description = `No Description`;
-
+        console.log(data);
         callAjax(data, function (msg) {
           $('.conversation').append(
             `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
@@ -1654,8 +1662,8 @@
       console.log(data);
       var request = $.ajax({
         // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
-        url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
-        // url: "http://6c2f49c2.ngrok.io/api/ticketid",
+        // url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
+        url: "http://947a4376.ngrok.io/api/ticketid",
         method: "POST",
         // data:   data,
         data: JSON.stringify(data),
