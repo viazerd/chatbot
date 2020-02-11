@@ -126,7 +126,7 @@
 
 <script id='promotion_sub_sec' type="text/template">
   <div id="promo_sub_sec">
-    <button  id='promotion_type'>Promotion Type</button>
+    <button target='_blank' onclick='window.open("http:/\/\ecwin888.cf/en/promotion")'>Promotion Type</button>
     <div class="clearfix"></div>
     <button id='claim_promo'>Claim Promotion/Bonus</button>
     <div class="clearfix"></div>
@@ -361,25 +361,29 @@
   </script>
 <script id="transfer_bal_template" type="text/template">
   <form id='transfer_bal_form' class="form">
+    <div class="form-group">
+      <input type="text" name="" id="transfer_bal_from_game" class="form-control" placeholder="Enter From Game">
+    </div>
         <div class="form-group">
-          <input autofocus type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter Game ID">
+          <input autofocus type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter From Game Name">
         </div>
         <div class="form-group">
+          <input type="text" name="" id="transfer_bal_amount" class="form-control" placeholder="Enter Amount">
+        </div>
+        <!-- <div class="form-group">
           <label for="bonus_reason">How Would you like to transfer balance</label>
           <select name="bonus_reason" id="bonus_reason" class="form-control">
             <option value="Wallet">Wallet </option>
             <option value="Game">Game</option>
           </select>
+        </div> -->
+        <div class="form-group">
+          <input type="text" name="" id="transfer_bal_to_gamename" class="form-control" placeholder="Enter To Game Name">
         </div>
         <div class="form-group">
-          <input type="text" name="" id="transfer_bal_gamename" class="form-control" placeholder="Enter To Game">
+          <input type="text" name="" id="transfer_bal_to_gameid" class="form-control" placeholder="Enter To Game Id">
         </div>
-        <div class="form-group">
-          <input type="text" name="" id="transfer_bal_from_game" class="form-control" placeholder="Enter From Game">
-        </div>
-        <div class="form-group">
-          <input type="text" name="" id="transfer_bal_amount" class="form-control" placeholder="Enter Amount">
-        </div>
+        
         <div class="form-group">
           <input type="text" readonly name="" id="transfer_bal_mobile" class="form-control" placeholder="Enter Mobile No">
         </div>
