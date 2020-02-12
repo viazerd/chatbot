@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-  <title>Payment Advice</title>
+  <title>ECWIN Chatbot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
@@ -21,7 +21,7 @@
       <div class="message">
         <div class="conversation" id='convo'>
           <div class="left">
-            Welcome to xxx, talk to our chatbot to grand easy access / faster responese
+            Welcome to ECWIN Chatbot, talk to our chatbot to grand easy access / faster responese
             <!-- Hi there, welcome to our side. How can we help you? -->
           </div>
           <!-- <div class="right">I'm looking for staff solutions</div>
@@ -365,7 +365,7 @@
       <input type="text" name="" id="transfer_bal_from_game" class="form-control" placeholder="Enter From Game">
     </div>
         <div class="form-group">
-          <input autofocus type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter From Game Id">
+          <input  type="text" name="" id="transfer_bal_gameid" class="form-control" placeholder="Enter From Game Id">
         </div>
         <div class="form-group">
           <input type="text" name="" id="transfer_bal_amount" class="form-control" placeholder="Enter Amount">
@@ -384,7 +384,7 @@
         <br>
              
         <div class="form-group">
-          <button  class="btn btn-primary transfer_bal_submit" type="button">Submit</button>
+          <button  autofocus="autofocus"  class="btn btn-primary transfer_bal_submit" type="button">Submit</button>
           <button  class="btn btn-primary transfer_bal_cancel" style="float:right" type="button">Cancel</button>
         </div>
         
@@ -806,6 +806,7 @@
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(check_bal_template);
+        // $('#transfer_bal_form').toggle();
         var mobInput = document.getElementById("transfer_bal_mobile");
         mobInput.value = localStorage.getItem('mobile');
       }, 5000)
