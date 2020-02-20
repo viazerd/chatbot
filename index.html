@@ -253,6 +253,9 @@
           <input type="text" name="gamename" id="deposit_game_name" class="form-control" placeholder="Enter Game Name">
         </div>
         <div class="form-group">
+          <input type="text" name="gameid" id="deposit_game_id" class="form-control" placeholder="Enter Game ID (optional)">
+        </div>
+        <div class="form-group">
           <input type="text" readonly name="usercontact" id="deposit_user_mobile" class="form-control" placeholder="Enter Mobile No">
         </div>
         <div class="form-group">
@@ -1195,6 +1198,7 @@
 
       var user_name = $('#deposit_user_name').val();
       var game_name = $('#deposit_game_name').val();
+      var game_id = $('#deposit_game_id').val();
       var user_mobile = $('#deposit_user_mobile').val();
       var user_image = $('#upload_deposit').val();
 
