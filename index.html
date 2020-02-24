@@ -253,7 +253,7 @@
           <input type="text" name="gamename" id="deposit_game_name" class="form-control" placeholder="Enter Game Name">
         </div>
         <div class="form-group">
-          <input type="text" name="gameid" id="deposit_game_id" class="form-control" placeholder="Enter Game ID (optional)">
+          <input type="text" name="userid" id="deposit_game_id" class="form-control" placeholder="Enter Game ID (optional)">
         </div>
         <div class="form-group">
           <input type="text" readonly name="usercontact" id="deposit_user_mobile" class="form-control" placeholder="Enter Mobile No">
@@ -1695,7 +1695,7 @@ withdraw_amount) {
     }
     var request = $.ajax({
       url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketraised",
-      // url: 'http://6c2f49c2.ngrok.io/api/ticketraised',
+      // url: 'http://c143ab62.ngrok.io/api/ticketraised',
       data: formdata ? formdata : form.serialize(),
       cache: false,
       contentType: false,
