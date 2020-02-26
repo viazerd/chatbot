@@ -1122,7 +1122,9 @@
       } else {
         $('#bonus_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
-        display_bonus_form()
+        display_bonus_form();
+        var bonusMob = document.getElementById('bonus_user_mobile');
+        bonusMob.val = localStorage.getItem('mobile');
       }
 
     });
@@ -1186,7 +1188,9 @@
       } else {
         $('#transfer_bal_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
-        display_bonus_form()
+        display_transfer_bal_form()
+        var mobIn = document.getElementById('transfer_bal_mobile');
+        mobIn.value = localStorage.getItem('mobile');
       }
 
     });
@@ -1239,7 +1243,9 @@
       } else {
         $('#deposit_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
-        display_deposit_form()
+        display_deposit_form();
+        var mobIn = document.getElementById('deposit_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
 
       }
 
@@ -1291,9 +1297,11 @@
 
 
       } else {
-        $('#deposit_form').remove();
+        $('#claim_promo_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
-        display_deposit_form()
+        display_claim_promo_form();
+        var mobIn = document.getElementById('promo_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
 
       }
 
@@ -1344,9 +1352,12 @@
 
 
       } else {
-        $('#deposit_form').remove();
+        $('#bonus_available_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
-        display_deposit_form()
+        display_bonus_available_form();
+        var mobIn = document.getElementById('bonus_available_user_mobile');
+        console.log(mobIn.value);
+        mobIn.value = localStorage.getItem('mobile');
 
       }
 
@@ -1398,9 +1409,12 @@
 
 
       } else {
-        $('#deposit_form').remove();
+        $('#check_bal_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
-        display_deposit_form()
+        display_check_bal_form()
+        var mobIn = document.getElementById('check_bal_mobile');
+        mobIn.value = localStorage.getItem('mobile');
+        
 
       }
 
@@ -1461,6 +1475,8 @@ withdraw_amount) {
         $('#withdraw_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
         display_withdraw_form()
+        var mobIn = document.getElementById('withdraw_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
       }
 
     });
@@ -1519,6 +1535,7 @@ withdraw_amount) {
         $('#issue_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
         display_bal_form()
+        
       }
 
     });
@@ -1568,6 +1585,8 @@ withdraw_amount) {
         $('#issue_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
         display_issue_form()
+        var mobIn = document.getElementById('issue_user_mobile');
+        mobIn.value = localStorage.getItem('mobile');
       }
 
     });
@@ -1592,8 +1611,14 @@ withdraw_amount) {
       $('#msg_input').val('')
 
     }
+    var display_bonus_available_form = () =>{
 
+      console.log('Hi');
 
+      var bonus_available_form = $('#bonus_available_template').html();
+      $('.conversation').append(bonus_available_form);
+      $('#msg_input').val('');
+    }
     /**
      * Display Form for Deposit
      */
@@ -1607,7 +1632,13 @@ withdraw_amount) {
       $('#msg_input').val('')
 
     }
+    var display_check_bal_form = () =>{
+      disableMessaging();
 
+      var check_bal_form = $('#check_bal_template').html();
+      $('.conversation').append(check_bal_form);
+      $('#msg_input').val('')
+    }
     /**
      * Display Form for withdraw
      */
@@ -1621,10 +1652,24 @@ withdraw_amount) {
       $('#msg_input').val('')
 
     }
+    var display_claim_promo_form =() =>{
+      disableMessaging();
+
+      var claim_promo_form = $('#claim_promo_template').html();
+      $('.conversation').append(claim_promo_form);
+      $('#msg_input').val('')
+    }
     /**
      * Display Form for troubleshooting
      */
+    var display_transfer_bal_form =() =>{
+      disableMessaging();
 
+      var transfer_bal_form = $('#transfer_bal_template').html();
+      $('.conversation').append(transfer_bal_form);
+      $('#msg_input').val('')
+
+    }
     var display_issue_form = () => {
       disableMessaging()
       // $('.conversation').append(`<div class="right">5</div><div class="clearfix"></div>`)
