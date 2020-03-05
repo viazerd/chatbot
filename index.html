@@ -26,9 +26,9 @@
           </div>
           <!-- <div class="right">I'm looking for staff solutions</div>
           <div class="clearfix"></div> -->
-          <div  id='personal_info' class="left">Please enter your Mobile Number</div>
+          <div id='personal_info' class="left">Please enter your Mobile Number</div>
           <div class="clearfix"></div>
-          
+
 
         </div>
         <input type="text" id="msg_input" placeholder="Enter your message..."><button class="send"><img src="plane.png"
@@ -47,6 +47,8 @@
     <div class="clearfix"></div>
     <!-- <button id='bonus'>Bonus</button>
     <div class="clearfix"></div> -->
+    <button id="account">Account</button>
+    <div class="clearfix"></div>
     <button id='deposit'>Deposit</button>
     <div class="clearfix"></div>
     <button id='game_list'>Game List</button>
@@ -62,6 +64,12 @@
    </div>
   </script>
 
+<script id='account_selection' type="text/template">
+  <div class="clearfix"></div>
+      <div class="right">Account</div>
+      <div class="clearfix"></div>
+</script>
+
 <script id='bonus_selection' type="text/template">
   <div class="clearfix"></div>
     <div class="right">Bonus</div>
@@ -72,8 +80,8 @@
     <div class="right">Deposit</div>
     <div class="clearfix"></div>
   </script>
-  <script id='game_list_selection' type="text/template">
-    <div class="clearfix"></div>
+<script id='game_list_selection' type="text/template">
+  <div class="clearfix"></div>
       <div class="left">Below is the list of available games</div>
       <div class="clearfix"></div>
     </script>
@@ -123,6 +131,57 @@
     <div class="clearfix"></div>
  </script>
 
+ <script id='account_template' type="text/template">
+  <div id="acc_sub_sec">
+    <div class="clearfix"></div>
+    <button>
+      <a id='edit_account' href="https://lc.chat/now/8881529/" target="_blank" >Edit Account</a>
+    </button>
+    <div class="clearfix"></div>
+    <button id="req_game">Request Game ID</button>
+    <div class="clearfix"></div>
+  </div>
+</script>
+
+<script id='game_list_temp' type="text/template">
+  <div id="game_list">
+    <div class="clearfix"></div>
+    <button id='api'>API</button>
+    <div class="clearfix"></div>
+    <button id='scr'>SCR</button>
+    <div class="clearfix"></div>
+    <button id='scr'>GW</button>
+    <div class="clearfix"></div>
+    <button id='scr'>GC</button>
+    <div class="clearfix"></div>
+    <button id='scr'>GC</button>
+    <div class="clearfix"></div>
+    <button id='scr'>NT</button>
+    <div class="clearfix"></div>
+    <button id='scr'>3W8</button>
+    <div class="clearfix"></div>
+    <button id='scr'>ACE333</button>
+    <div class="clearfix"></div>
+    <button id='scr'>SKY777 NEW</button>
+    <div class="clearfix"></div>
+    <button id='scr'>MEGA888</button>
+    <div class="clearfix"></div>
+    <button id='scr'>KING KONG</button>
+    <div class="clearfix"></div>
+    <button id='scr'>Joker 3</button>
+    <div class="clearfix"></div>
+    <button id='scr'>PUSSY888 NEW</button>
+    <div class="clearfix"></div>
+    <button id='scr'>KK FREE</button>
+    <div class="clearfix"></div>
+    <button id='scr'>LIVE22 NEW2</button>
+    <div class="clearfix"></div>
+    <button id='scr'>XE88</button>
+    <div class="clearfix"></div>
+    <button id='back_menu'>Previous Menu</button>
+    <div class="clearfix"></div>
+  </div>
+</script>
 
 <script id='promotion_sub_sec' type="text/template">
   <div id="promo_sub_sec">
@@ -574,11 +633,11 @@
   var mobileNum
   $(document).ready(function () {
     var xhr = new XMLHttpRequest();
-    this.mobileNum = $('#user_main_mobile').val() ;
+    this.mobileNum = $('#user_main_mobile').val();
     var initial_form_template = $('#initial_form_template').html();
     var main_selection = $('#main_selection').html();
     $('.conversation').append(initial_form_template);
-    
+
     $('.conversation').append(main_selection);
     $('#main_menu').hide()
     // $('.conversation').append($('#main_selection').html().hide());
@@ -586,7 +645,7 @@
     $('body').on('click', '.promo_list_cancel', function (e) {
       var claim_promotion_template = $('#promotion_list_template').html();
       var promotion_sub_sec = $('#promo_sub_sec').html();
-      
+
 
       console.log(claim_promotion_template);
       $('.conversation').append($('#promo_sub_sec').show());
@@ -598,17 +657,17 @@
 
     $('body').on('click', '.main_mobile_submit', function (e) {
       disableMessaging();
-     
+
       // main_selection.hide();
       this.mobileNum = $('#user_mobile_main').val();
-      localStorage.setItem('mobile',this.mobileNum);
-      if(this.mobileNum.length > 0){
+      localStorage.setItem('mobile', this.mobileNum);
+      if (this.mobileNum.length > 0) {
         $('#initial_form').hide();
         $('#personal_info').remove();
         $('.conversation').append($('#main_menu').show());
         console.log(this.mobileNum);
-        
-      }else{
+
+      } else {
         // $('#main_menu').remove;
         $('#initial_form').remove();
         $('.conversation').append(initial_form_template);
@@ -616,9 +675,30 @@
       }
 
     })
-    
 
+    $("#account").click(function(){
+      disableMessaging();
+      var account_template = $('#account_template').html();
+      var account_selection = $('#account_selection').html();
+      var typing_template = $('#typing_template').html();
 
+      
+      $('.conversation').append(account_selection);
+      $('.conversation').append(account_template);
+      
+    })
+
+    $('body').on('click', '#req_game', function (e) {
+      disableMessaging();
+      var account_template = $('#account_template').html();
+      var account_selection = $('#account_selection').html();
+      var typing_template = $('#typing_template').html();
+
+      
+      $('.conversation').append(account_selection);
+      $('.conversation').append(account_template);
+      
+    })
 
     $("#bonus").click(function () {
 
@@ -856,8 +936,8 @@
 
 
     $("#deposit").click(function () {
-    
-    
+
+
       disableMessaging();
       var deposit_form_template = $('#deposit_form_template').html();
       var deposit_selection = $('#deposit_selection').html();
@@ -866,15 +946,15 @@
 
       $('.conversation').append(deposit_selection);
       $('.conversation').append(typing_template);
-      
+
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(deposit_chat_wait);
       }, 3000);
       setTimeout(function () {
         $('.conversation').append(deposit_form_template);
-        var mobInput = document.getElementById("deposit_user_mobile") ;
-        mobInput.value = localStorage.getItem('mobile'); 
+        var mobInput = document.getElementById("deposit_user_mobile");
+        mobInput.value = localStorage.getItem('mobile');
       }, 5000);
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
@@ -1141,14 +1221,14 @@
       var from_game = $('#transfer_bal_from_game').val();
       var amount = $('#transfer_bal_amount').val();
       var to_game = $('#transfer_bal_to_gamename').val();
-      var to_game_id =$('#transfer_bal_to_gameid').val();
+      var to_game_id = $('#transfer_bal_to_gameid').val();
       console.log(user_id);
       console.log(user_mobile);
       console.log(from_game);
       console.log(amount);
       console.log(to_game);
       console.log(to_game_id);
-      if ( user_id && user_mobile && from_game && amount && to_game && to_game_id) {
+      if (user_id && user_mobile && from_game && amount && to_game && to_game_id) {
         var data = {};
         data.subject = `Transfer Balance`
         data.userid = user_id
@@ -1159,7 +1239,7 @@
         data.togame = to_game
         data.touserid = to_game_id
         data.description = `No Description`
-        
+
         console.log(data);
 
         callAjax(data, function (msg) {
@@ -1414,7 +1494,7 @@
         display_check_bal_form()
         var mobIn = document.getElementById('check_bal_mobile');
         mobIn.value = localStorage.getItem('mobile');
-        
+
 
       }
 
@@ -1436,8 +1516,8 @@
       var withdraw_bank = $('#withdraw_bank').val();
       var withdraw_amount = $('#withdraw_amount').val()
       if (user_name && user_id && user_mobile && withdraw_account &&
-withdraw_bank &&
-withdraw_amount) {
+        withdraw_bank &&
+        withdraw_amount) {
         var data = {};
         data.subject = `Withdraw`;
         data.playername = user_name;
@@ -1445,7 +1525,7 @@ withdraw_amount) {
         data.usercontact = user_mobile;
         data.amount = withdraw_amount;
         data.bankname = withdraw_bank;
-        data.bankaccount = withdraw_account; 
+        data.bankaccount = withdraw_account;
         data.description = `No Description`;
         console.log(data);
         callAjax(data, function (msg) {
@@ -1535,7 +1615,7 @@ withdraw_amount) {
         $('#issue_form').remove();
         $('.conversation').append(`<div class="right">Incomplete Form Entry</div><div class="clearfix"></div>`)
         display_bal_form()
-        
+
       }
 
     });
@@ -1611,7 +1691,7 @@ withdraw_amount) {
       $('#msg_input').val('')
 
     }
-    var display_bonus_available_form = () =>{
+    var display_bonus_available_form = () => {
 
       console.log('Hi');
 
@@ -1632,7 +1712,7 @@ withdraw_amount) {
       $('#msg_input').val('')
 
     }
-    var display_check_bal_form = () =>{
+    var display_check_bal_form = () => {
       disableMessaging();
 
       var check_bal_form = $('#check_bal_template').html();
@@ -1652,7 +1732,7 @@ withdraw_amount) {
       $('#msg_input').val('')
 
     }
-    var display_claim_promo_form =() =>{
+    var display_claim_promo_form = () => {
       disableMessaging();
 
       var claim_promo_form = $('#claim_promo_template').html();
@@ -1662,7 +1742,7 @@ withdraw_amount) {
     /**
      * Display Form for troubleshooting
      */
-    var display_transfer_bal_form =() =>{
+    var display_transfer_bal_form = () => {
       disableMessaging();
 
       var transfer_bal_form = $('#transfer_bal_template').html();
@@ -1754,8 +1834,6 @@ withdraw_amount) {
     request.fail(fail);
 
   }
-
-
 </script>
 
 </html>
