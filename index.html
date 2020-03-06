@@ -623,7 +623,11 @@
   </script>
 <script>
   var mobileNum
-
+  function enableMessaging() {
+      $('.conversation').append($('#main_menu').show());
+      $('#msg_input').prop("disabled", false)
+      $('.send').prop("disabled", false)
+    }
   function callAjax(data, done, fail) {
       console.log(data);
       var request = $.ajax({
@@ -661,9 +665,12 @@
             `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
           )
           // enableMessaging()
-          var main_selection = $('#main_selection').html();
+          
+          enableMessaging()
+
+         
         
-          $('.conversation').append(main_selection);
+          // $('.conversation').append(main_selection);
         }, function (err) {
           // enableMessaging()
           $('#transfer_bal_form').remove();
@@ -675,7 +682,7 @@
           )
         })
   }
-  $(document).ready(function () {
+ 
     var xhr = new XMLHttpRequest();
     this.mobileNum = $('#user_main_mobile').val();
     var initial_form_template = $('#initial_form_template').html();
@@ -1854,7 +1861,7 @@
 
       request.fail(fail);
     }
-  });
+  // });
 
 
   function callFDAjax(form, done, fail) {
