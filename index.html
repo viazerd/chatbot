@@ -34,7 +34,6 @@
         <input type="text" id="msg_input" placeholder="Enter your message..."><button class="send"><img src="plane.png"
             alt=""></button>
         <div class="files"><button></button>
-          <span>Powered by Experdel</span>
         </div>
       </div>
     </div>
@@ -123,6 +122,14 @@
     <div class="clearfix"></div>
  </script>
 
+ <script id='game_id_selection' type="text/template">
+  <div class="clearfix"></div>
+    <div class="right">Request Game ID</div>
+    <div class="clearfix"></div>
+ </script>
+
+
+
 <script id='transfer_balance_selection' type="text/template">
   <div class="clearfix"></div>
     <div class="right">Transfer Balance</div>
@@ -142,43 +149,30 @@
 </script>
 
 <script id='game_list_temp' type="text/template">
+<div class='form-game-name'>
   <div id="game_list">
     <div class="clearfix"></div>
-    <button id='api'>API</button>
+    <button class='name_of_game' onclick="myFunction('API')" >API</button>
+    <button class='name_of_game'  onclick="myFunction('SCR')">SCR</button>
+    <button class='name_of_game' onclick="myFunction('GW')">GW</button>
+    <button class='name_of_game' onclick="myFunction('GC')">GC</button>
+    <button class='name_of_game' onclick="myFunction('NT')">NT</button>
     <div class="clearfix"></div>
-    <button id='scr'>SCR</button>
-    <div class="clearfix"></div>
-    <button id='scr'>GW</button>
-    <div class="clearfix"></div>
-    <button id='scr'>GC</button>
-    <div class="clearfix"></div>
-    <button id='scr'>GC</button>
-    <div class="clearfix"></div>
-    <button id='scr'>NT</button>
-    <div class="clearfix"></div>
-    <button id='scr'>3W8</button>
-    <div class="clearfix"></div>
-    <button id='scr'>ACE333</button>
-    <div class="clearfix"></div>
-    <button id='scr'>SKY777 NEW</button>
-    <div class="clearfix"></div>
-    <button id='scr'>MEGA888</button>
-    <div class="clearfix"></div>
-    <button id='scr'>KING KONG</button>
-    <div class="clearfix"></div>
-    <button id='scr'>Joker 3</button>
-    <div class="clearfix"></div>
-    <button id='scr'>PUSSY888 NEW</button>
-    <div class="clearfix"></div>
-    <button id='scr'>KK FREE</button>
-    <div class="clearfix"></div>
-    <button id='scr'>LIVE22 NEW2</button>
-    <div class="clearfix"></div>
-    <button id='scr'>XE88</button>
+    <button class='name_of_game' onclick="myFunction('3W8')">3W8</button>
+    <button class='name_of_game' onclick="myFunction('ACE333')">ACE333</button>
+    <button class='name_of_game' onclick="myFunction('SKY777 NEW')">SKY777 NEW</button>
+    <button class='name_of_game' onclick="myFunction('MEGA888')">MEGA888</button>
+    <button class='name_of_game' onclick="myFunction('KING KONG')">KING KONG</button>
+    <button class='name_of_game' onclick="myFunction('Joker 3')">Joker 3</button>
+    <button class='name_of_game' onclick="myFunction('PUSSY888 NEW')">PUSSY888 NEW</button>
+    <button class='name_of_game' onclick="myFunction('KK FREE')">KK FREE</button>
+    <button class='name_of_game' onclick="myFunction('LIVE22 NEW2')">LIVE22 NEW2</button>
+    <button class='name_of_game' onclick="myFunction('XE88')">XE88</button>
     <div class="clearfix"></div>
     <button id='back_menu'>Previous Menu</button>
     <div class="clearfix"></div>
   </div>
+</div>
 </script>
 
 <script id='promotion_sub_sec' type="text/template">
@@ -629,6 +623,58 @@
   </script>
 <script>
   var mobileNum
+
+  function callAjax(data, done, fail) {
+      console.log(data);
+      var request = $.ajax({
+        // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
+        // url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
+        url: "http://8f3f451a.ngrok.io/api/ticketid",
+        method: "POST",
+        // data:   data,
+        data: JSON.stringify(data),
+        cache: false,
+        contentType: "application/json; charset=utf-8",
+        processData: false,
+      });
+
+      request.done(done);
+
+      request.fail(fail);
+    }
+
+  function myFunction(name) {
+    var game_name = name;
+    var user_contact = localStorage.getItem('mobile');
+    var data = {};
+    data.subject = `Game List`;
+    data.gamename = game_name;
+    data.usercontact = user_contact;
+    callAjax(data, function (msg) {
+      console.log(data);
+          
+          $('.form-game-name').remove();
+        
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
+          )
+          // enableMessaging()
+          var main_selection = $('#main_selection').html();
+        
+          $('.conversation').append(main_selection);
+        }, function (err) {
+          // enableMessaging()
+          $('#transfer_bal_form').remove();
+
+
+          // $('.conversation').append(user_msg_converted)
+          $('.conversation').append(
+            `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
+          )
+        })
+  }
   $(document).ready(function () {
     var xhr = new XMLHttpRequest();
     this.mobileNum = $('#user_main_mobile').val();
@@ -689,7 +735,7 @@
     $('body').on('click', '#req_game', function (e) {
       disableMessaging();
       var account_template = $('#game_list_temp').html();
-      var account_selection = $('#account_selection').html();
+      var account_selection = $('#game_id_selection').html();
       var typing_template = $('#typing_template').html();
 
       
@@ -697,6 +743,8 @@
       $('.conversation').append(account_template);
       
     })
+
+  
 
     $("#bonus").click(function () {
 
@@ -1622,6 +1670,8 @@
      * issue Submit Function
      */
 
+ 
+
     $('body').on('click', '.issue_submit', function (e) {
 
       var user_name = $('#issue_user_name').val();
@@ -1790,8 +1840,8 @@
       console.log(data);
       var request = $.ajax({
         // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
-        url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
-        // url: "http://db9af46d.ngrok.io/api/ticketid",
+        // url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
+        url: "http://8f3f451a.ngrok.io/api/ticketid",
         method: "POST",
         // data:   data,
         data: JSON.stringify(data),
