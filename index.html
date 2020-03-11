@@ -40,6 +40,7 @@
   </div>
 </body>
 
+
 <script id='main_selection' type="text/template">
   <div id='main_menu'>
     <div class="left">Which kind of service you looking for?</div>
@@ -227,7 +228,7 @@
     </div>
     <br>
     <div class="form-group">
-      <button  class="btn btn-primary claim_promo_submit" type="button">Submit</button>
+      <button  class="btn btn-primary claim_promo_submit" type="submit">Submit</button>
       <button  class="btn btn-primary claim_promo_cancel" style="float:right" type="button">Cancel</button>
     </div>
     
@@ -242,7 +243,7 @@
     </div>
     <br>
     <div class="form-group">
-      <button  class="btn btn-primary main_mobile_submit"  type="button">Submit</button>
+      <button  class="btn btn-primary main_mobile_submit"  type="submit">Submit</button>
       <!-- <button  class="btn btn-primary main_cancel" style="float:right" type="button">Cancel</button> -->
     </div>
     
@@ -261,7 +262,7 @@
     </div>
     <br>
     <div class="form-group">
-      <button  class="btn btn-primary bonus_available_submit" type="button">Submit</button>
+      <button  class="btn btn-primary bonus_available_submit" type="submit">Submit</button>
       <button  class="btn btn-primary bonus_available_cancel" style="float:right" type="button">Cancel</button>
     </div>
     
@@ -294,7 +295,7 @@
       </div>
       <br>
       <div class="form-group">
-        <button  class="btn btn-primary bonus_submit" type="button">Submit</button>
+        <button  class="btn btn-primary bonus_submit" type="submit">Submit</button>
         <button id='cncl'  class="btn btn-primary bonus_cancel" style="float:right" type="button">Cancel</button>
       </div>
       
@@ -331,7 +332,7 @@
   
         
         <div class="form-group">
-          <button  class="btn btn-primary deposit_submit"  value="submit" type='button' >Submit</button>
+          <button  class="btn btn-primary deposit_submit"  value="submit" type='submit' >Submit</button>
           <button  class="btn btn-primary deposit_cancel" style="float:right" type="button">Cancel</button>
         </div>
         
@@ -362,7 +363,7 @@
         </div>
         <br>
         <div class="form-group">
-          <button  class="btn btn-primary withdraw_submit" type="button">Submit</button>
+          <button  class="btn btn-primary withdraw_submit" type="submit">Submit</button>
           <button  class="btn btn-primary withdraw_cancel" style="float:right" type="button">Cancel</button>
         </div>
         
@@ -400,7 +401,7 @@
       <br>
       
       <div class="form-group">
-        <button  class="btn btn-primary issue_submit" type="button">Submit</button>
+        <button  class="btn btn-primary issue_submit" type="submit">Submit</button>
         <button  class="btn btn-primary issue_cancel" style="float:right" type="button">Cancel</button>
       </div>
       
@@ -420,7 +421,7 @@
       <br>
            
       <div class="form-group">
-        <button  class="btn btn-primary check_bal_submit" type="button">Submit</button>
+        <button  class="btn btn-primary check_bal_submit" type="submit">Submit</button>
         <button  class="btn btn-primary check_bal_cancel" style="float:right" type="button">Cancel</button>
       </div>
       
@@ -452,7 +453,7 @@
         <br>
              
         <div class="form-group">
-          <button  autofocus="autofocus"  class="btn btn-primary transfer_bal_submit" type="button">Submit</button>
+          <button  autofocus="autofocus"  class="btn btn-primary transfer_bal_submit" type="submit">Submit</button>
           <button  class="btn btn-primary transfer_bal_cancel" style="float:right" type="button">Cancel</button>
         </div>
         
@@ -722,7 +723,7 @@
 
     $('body').on('click', '.main_mobile_submit', function (e) {
       disableMessaging();
-
+      event.preventDefault(e);
       // main_selection.hide();
       this.mobileNum = $('#user_mobile_main').val();
       localStorage.setItem('mobile', this.mobileNum);
@@ -1216,7 +1217,7 @@
      * Bonus Form Submit
      */
     $('body').on('click', '.bonus_submit', function (e) {
-
+      e.preventDefault();
       var user_name = $('#bonus_user_name').val();
       var user_email = $('#bonus_user_email').val();
       var user_id = $('#bonus_user_id').val();
@@ -1282,6 +1283,7 @@
      */
     $('body').on('click', '.transfer_bal_submit', function (e) {
 
+      e.preventDefault();
       var user_id = $('#transfer_bal_gameid').val();
       // var from_transfer = $('#bonus_reason').val();
 
@@ -1347,7 +1349,7 @@
 
     $('body').on('click', '.deposit_submit', function (e) {
 
-
+      e.preventDefault();
       var user_name = $('#deposit_user_name').val();
       var game_name = $('#deposit_game_name').val();
       var game_id = $('#deposit_game_id').val();
@@ -1403,7 +1405,7 @@
      *Claim Promotion 
      */
     $('body').on('click', '.claim_promo_submit', function (e) {
-
+      e.preventDefault();
       var game_id = $('#promo_game_id').val();
       var game_name = $('#promo_game_name').val();
       var user_mobile = $('#promo_user_mobile').val();
@@ -1460,7 +1462,7 @@
      */
     $('body').on('click', '.bonus_available_submit', function (e) {
 
-
+      e.preventDefault()
       var game_name = $('#bonus_available_game_name').val();
       var user_mobile = $('#bonus_available_user_mobile').val();
 
@@ -1517,7 +1519,7 @@
      */
     $('body').on('click', '.check_bal_submit', function (e) {
 
-
+      e.preventDefault();
       var game_name = $('#check_bal_gameid').val();
       var user_mobile = $('#check_bal_mobile').val();
 
@@ -1577,6 +1579,7 @@
 
     $('body').on('click', '.withdraw_submit', function (e) {
 
+      e.preventDefault();
       var user_name = $('#withdraw_user_name').val();
       var user_id = $('#withdraw_user_id').val();
       var user_mobile = $('#withdraw_user_mobile').val();
@@ -1696,6 +1699,7 @@
 
     $('body').on('click', '.issue_submit', function (e) {
 
+      e.preventDefault();
       var user_name = $('#issue_user_name').val();
       var game_name = $('#issue_game_name').val();
       var game_id = $('#issue_game_id').val();
