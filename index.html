@@ -12,7 +12,13 @@
 
 <body>
   <div class="container-fluid pl-0 pr-0">
+
+   
+    <div class="bot">
+      <img class="bot-img" src="./bot_img.png" alt="" srcset="">
+    </div>
     <div class="chat">
+     
       <div class="detail">
         <img src="login.png" alt=""> <span>Hi there...</span> <button class="close"></button><button class="open"
           style="display: none;"><img src="up-arrow.png"></button>
@@ -37,6 +43,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </body>
 
@@ -145,6 +152,9 @@
     </button>
     <div class="clearfix"></div>
     <button id="req_game">Request Game ID</button>
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <button id='back_menu'>Previous Menu</button>
     <div class="clearfix"></div>
   </div>
 </script>
@@ -818,6 +828,7 @@
       $('#promo_sub_sec').remove();
       $('#promo_chat_wait').remove();
       $('.form-game-name').remove();
+      $('#acc_sub_sec').remove();
       enableMessaging();
     });
 
@@ -1189,13 +1200,15 @@
     })
 
     $(".close").click(function () {
+      $(".chat").hide();
       $(this).hide();
       $(".message").hide();
-      $(".open").show();
+      $(".bot").show();
     });
 
-    $(".open").click(function () {
+    $(".bot").click(function () {
       $(this).hide();
+      $(".chat").show();
       $(".message").show();
       $(".open").hide();
       $(".close").show();

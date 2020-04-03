@@ -8,6 +8,19 @@
   padding: 0px 0px 10px 0px;
   background: #3C86C4;
 }
+
+.bot{
+  width: 113px;
+  position: fixed;
+  bottom: 0px;
+  right: 18px;
+
+  border-radius: 10px;
+  padding: 0px 0px 10px 0px;
+}
+.bot-img{
+  width: 100px;
+}
 button {
   border: 1px solid #3C86C4;
   font-size: 12px!important;
