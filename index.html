@@ -1863,7 +1863,8 @@
 
     function callAjaxBalEnquiry(data, done, fail) {
       var request = $.ajax({
-        url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/bal-inquiry",
+        // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/bal-inquiry",
+        url: "https://chatbot.chat-sys.com/api/bal-inquiry",
         method: "POST",
         data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
@@ -1879,7 +1880,7 @@
       console.log(data);
       var request = $.ajax({
         // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
-        url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
+        url: "https://chatbot.chat-sys.com/api/ticketid",
         // url: "http://8f3f451a.ngrok.io/api/ticketid",
         method: "POST",
         // data:   data,
@@ -1893,7 +1894,7 @@
 
       request.fail(fail);
     }
-  // });
+
 
 
   function callFDAjax(form, done, fail) {
@@ -1906,7 +1907,7 @@
       console.log('Reached')
     }
     var request = $.ajax({
-      url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketraised",
+      url: "https://chatbot.chat-sys.com/api/ticketraised",
       // url: 'http://c143ab62.ngrok.io/api/ticketraised',
       data: formdata ? formdata : form.serialize(),
       cache: false,
