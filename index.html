@@ -653,12 +653,11 @@
       $('#msg_input').prop("disabled", false)
       $('.send').prop("disabled", false)
     }
+
   function callAjax(data, done, fail) {
       console.log(data);
       var request = $.ajax({
-        // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
-        url: "http://awseb-AWSEB-15QDE2K1JTXCG-1973627911.ap-southeast-1.elb.amazonaws.com/api/ticketid",
-        // url: "http://8f3f451a.ngrok.io/api/ticketid",
+        url: "https://bot.chat-sys.com/api/ticketid",
         method: "POST",
         // data:   data,
         data: JSON.stringify(data),
@@ -683,25 +682,14 @@
       console.log(data);
           
           $('.form-game-name').remove();
-        
-
-          // $('.conversation').append(user_msg_converted)
+      
           $('.conversation').append(
             `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
           )
-          // enableMessaging()
-          
+              
           enableMessaging()
-
-         
-        
-          // $('.conversation').append(main_selection);
         }, function (err) {
-          // enableMessaging()
           $('#transfer_bal_form').remove();
-
-
-          // $('.conversation').append(user_msg_converted)
           $('.conversation').append(
             `<div class="left">Error Occured <br> Please Try After Sometime</div><div class="clearfix"></div>`
           )
@@ -716,7 +704,6 @@
 
     $('.conversation').append(main_selection);
     $('#main_menu').hide()
-    // $('.conversation').append($('#main_selection').html().hide());
 
     $('body').on('click', '.promo_list_cancel', function (e) {
       var claim_promotion_template = $('#promotion_list_template').html();
@@ -789,6 +776,7 @@
 
       $('.conversation').append(bonus_selection);
       $('.conversation').append(bonus_form_template);
+      scrollBot();
       $('#msg_input').val('');
       // document.getElementById('#bonus_form_template').scrollIntoView();
 
@@ -817,6 +805,7 @@
         $('.conversation').append(promotion_chat_wait);
         $('.conversation').append(promotion_sub_sec);
       }, 3000);
+      scrollBot();
       $('#msg_input').val('');
 
     })
@@ -865,7 +854,7 @@
 
       }, 5000)
 
-
+      scrollBot();
 
       $('#msg_input').val('');
     });
@@ -892,12 +881,13 @@
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(claim_promotion_template);
+        
         var mobIn = document.getElementById('promo_user_mobile');
         mobIn.value = localStorage.getItem('mobile');
 
       }, 5000)
 
-
+      scrollBot();
 
       $('#msg_input').val('');
     });
@@ -943,7 +933,7 @@
         var mobInput = document.getElementById("check_bal_mobile");
         mobInput.value = localStorage.getItem('mobile');
       }, 5000)
-
+      scrollBot();
       $('#msg_input').val('');
     });
 
@@ -973,7 +963,7 @@
         var mobInput = document.getElementById("transfer_bal_mobile");
         mobInput.value = localStorage.getItem('mobile');
       }, 5000)
-
+      scrollBot();
       $('#msg_input').val('');
     });
 
@@ -992,15 +982,20 @@
         $('#typing').remove();
 
         $('#available_bonus_chat_wait').slideUp();
+
         $('.conversation').append(claim_promo_chat_wait);
         $('.conversation').append(typing_template);
+       
       }, 3000);
+      scrollBot();
       setTimeout(function () {
         $('#typing').remove();
         $('.conversation').append(claim_promotion_template);
+     
         var mobIn = document.getElementById('bonus_available_user_mobile');
         mobIn.value = localStorage.getItem('mobile');
       }, 5000);
+      scrollBot();
       $('#msg_input').val('');
     });
 
@@ -1033,9 +1028,11 @@
       }, 3000);
       setTimeout(function () {
         $('.conversation').append(deposit_form_template);
+        
         var mobInput = document.getElementById("deposit_user_mobile");
         mobInput.value = localStorage.getItem('mobile');
       }, 5000);
+      scrollBot();
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
 
@@ -1057,6 +1054,8 @@
       setTimeout(function () {
         $('.conversation').append(deposit_form_template);
       }, 5000);
+      scrollBot();
+
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
 
@@ -1095,7 +1094,7 @@
 
       }, 5000)
 
-
+      scrollBot();
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
 
@@ -1153,6 +1152,7 @@
         var mobIn = document.getElementById('withdraw_user_mobile');
         mobIn.value = localStorage.getItem('mobile');
       }, 5000);
+      scrollBot();
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
 
@@ -1189,6 +1189,7 @@
         mobIn.value = localStorage.getItem('mobile');
 
       }, 5000)
+      scrollBot();
       $('#msg_input').val('');
       // document.getElementById('#deposit_form').scrollIntoView('#deposit_form');
 
@@ -1268,7 +1269,7 @@
             `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
           )
           enableMessaging()
-
+          
         }, function (err) {
           enableMessaging()
           $('#bonus_form').remove();
@@ -1758,12 +1759,7 @@
 
     });
 
-    function scrollToBottom() {
-      const conversation = document.getElementsByClassName('conversation');
-      console.log(conversation.scrollHeight);
-      conversation.scrollTop = conversation.scrollHeight;
-      console.log('Calling Scroll to bottom ', conversation.scrollTop)
-    }
+  
 
     /**
      * Display Form for Bonus
@@ -1775,6 +1771,7 @@
 
       var bonus_form_template = $('#bonus_form_template').html();
       $('.conversation').append(bonus_form_template)
+      scrollBot();
       $('#msg_input').val('')
 
     }
@@ -1784,6 +1781,7 @@
 
       var bonus_available_form = $('#bonus_available_template').html();
       $('.conversation').append(bonus_available_form);
+      scrollBot();
       $('#msg_input').val('');
     }
     /**
@@ -1922,6 +1920,13 @@
     request.fail(fail);
 
   }
+
+  function scrollBot(){
+    $('.conversation').animate({
+          scrollTop:$('.conversation').get(0).scrollHeight
+     },7000)
+  }
+
 </script>
 
 </html>

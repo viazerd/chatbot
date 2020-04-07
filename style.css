@@ -129,7 +129,7 @@ label, select{
 }
 .conversation{
   height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 ::-webkit-scrollbar { 
   display: none; 
