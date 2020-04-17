@@ -8,6 +8,12 @@
   padding: 0px 0px 10px 0px;
   background: #3C86C4;
 }
+#edit_account{
+  color:#3C86C4 ;
+}
+a:hover {
+  text-decoration: none !important;
+}
 
 .bot{
   width: 113px;

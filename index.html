@@ -657,7 +657,7 @@
   function callAjax(data, done, fail) {
       console.log(data);
       var request = $.ajax({
-        url: "https://chatbot.chat-sys.com/api/ticketid",
+        url: "https://botchat.chat-sys.com/api/ticketid",
         method: "POST",
         // data:   data,
         data: JSON.stringify(data),
@@ -814,6 +814,7 @@
       var promotion_sub_sec = $('#promotion_sub_sec').html();
       var promotion_chat_wait = $('#deposit_chat_wait').html();
 
+      $('#promo_sub_sec').hide();
       $('#promo_sub_sec').remove();
       $('#promo_chat_wait').remove();
       $('.form-game-name').remove();
@@ -1375,7 +1376,7 @@
 
 
 
-      if (user_name && game_name && user_mobile && user_image) {
+      if (user_name && game_name && user_mobile) {
 
         data = $('#deposit_form');
 
@@ -1558,9 +1559,13 @@
             `<div class="left">Ticket Successfully Raised <br> ${msg['data']}</div><div class="clearfix"></div>`
           )
           enableMessaging()
+          $('#check_bal_form').remove();
+
 
         }, function (err) {
-          $('#bonus_available_form').remove();
+        
+          $('#check_bal_form').remove();
+
 
 
           // $('.conversation').append(user_msg_converted)
@@ -1861,8 +1866,8 @@
 
     function callAjaxBalEnquiry(data, done, fail) {
       var request = $.ajax({
-        // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/bal-inquiry",
-        url: "https://chatbot.chat-sys.com/bal-inquiry",
+        // url: "http://ticketraise-env-2.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/bal-inquiry",
+        url: "https://botchat.chat-sys.com/api/bal-inquiry",
         method: "POST",
         data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
@@ -1877,11 +1882,9 @@
     function callAjax(data, done, fail) {
       console.log(data);
       var request = $.ajax({
-        // url: "http://ticketraise-env.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised",
-        url: "https://chatbot.chat-sys.com/api/ticketid",
-        // url: "http://8f3f451a.ngrok.io/api/ticketid",
+        url: "https://botchat.chat-sys.com/api/ticketid",
+        // url: "http://ticketraise-env-2.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketid",
         method: "POST",
-        // data:   data,
         data: JSON.stringify(data),
         cache: false,
         contentType: "application/json; charset=utf-8",
@@ -1905,8 +1908,8 @@
       console.log('Reached')
     }
     var request = $.ajax({
-      url: "https://chatbot.chat-sys.com/api/ticketraised",
-      // url: 'http://c143ab62.ngrok.io/api/ticketraised',
+      url: "https://botchat.chat-sys.com/api/ticketraised",
+      // url: 'http://ticketraise-env-2.2wnkzfpvni.ap-southeast-1.elasticbeanstalk.com/api/ticketraised',
       data: formdata ? formdata : form.serialize(),
       cache: false,
       contentType: false,
